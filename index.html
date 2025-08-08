@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datorteknik - Basomvandlare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Datorteknik</h1>
+            <h2>Basomvandlare</h2>
+            <p>Interaktiv konverterare mellan decimal, binär och hexadecimal representation</p>
+        </header>
+
+        <main>
+            <div class="converter-section">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="decimal-input">Decimal (10)</label>
+                        <input type="number" id="decimal-input" placeholder="Ange decimaltal">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="binary-input">Binär (2)</label>
+                        <input type="text" id="binary-input" placeholder="Ange binärtal (0 och 1)">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hex-input">Hexadecimal (16)</label>
+                        <input type="text" id="hex-input" placeholder="Ange hexadecimaltal (0-9, A-F)">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="bit-width-control">
+                        <label for="bit-width">Bitbredd:</label>
+                        <select id="bit-width">
+                            <option value="8">8 bitar</option>
+                            <option value="16">16 bitar</option>
+                            <option value="32" selected>32 bitar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="twos-complement-control">
+                        <label>
+                            <input type="checkbox" id="twos-complement">
+                            Tvåkomplement-läge
+                        </label>
+                    </div>
+                    
+                    <button id="clear-btn" class="btn-secondary">Rensa</button>
+                </div>
+
+                <div class="results-section">
+                    <div class="result-display">
+                        <h3>Resultat</h3>
+                        <div class="result-item">
+                            <span class="label">Decimal:</span>
+                            <span id="result-decimal" class="value">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Binär:</span>
+                            <span id="result-binary" class="value">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Hexadecimal:</span>
+                            <span id="result-hex" class="value">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <h3>Stegförklaring</h3>
+                <div id="step-explanation" class="explanation-content">
+                    <p>Ange ett värde i något av fälten ovan för att se steg-för-steg förklaring av konverteringen.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Datorteknik - Utbildningsmaterial för datavetenskap</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
