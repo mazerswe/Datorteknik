@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanningstabell - Datorteknik</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .truth-table {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        
+        td {
+            background-color: #ecf0f1;
+        }
+        
+        .minterm-row {
+            background-color: #e8f5e8 !important;
+            font-weight: bold;
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .expression {
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        
+        .variable-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .output-input {
+            width: 40px;
+            padding: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sanningstabell</h1>
+        
+        <div class="input-section">
+            <div class="form-group">
+                <label for="variableCount">Antal variabler (2-4):</label>
+                <select id="variableCount" onchange="updateVariableInputs()">
+                    <option value="2">2 variabler</option>
+                    <option value="3">3 variabler</option>
+                    <option value="4">4 variabler</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Variabelnamn:</label>
+                <div class="variable-inputs" id="variableInputs">
+                    <!-- Dynamic variable inputs will be added here -->
+                </div>
+            </div>
+            
+            <button onclick="generateTruthTable()">Generera sanningstabell</button>
+            <button onclick="clearTable()">Rensa</button>
+        </div>
+        
+        <div id="truthTableContainer" class="truth-table"></div>
+        
+        <div id="outputSection" class="output-section" style="display: none;">
+            <h3>Resultat:</h3>
+            <div id="mintermExpression" class="expression"></div>
+            <div id="sopExpression" class="expression"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentVariables = [];
+        let truthTable = [];
+        
+        // Initialize with 2 variables
+        updateVariableInputs();
+        
+        function updateVariableInputs() {
+            const count = parseInt(document.getElementById('variableCount').value);
+            const container = document.getElementById('variableInputs');
+            const defaultNames = ['A', 'B', 'C', 'D'];
+            
+            container.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Variabel ${i + 1}`;
+                input.value = defaultNames[i];
+                input.id = `var${i}`;
+                container.appendChild(input);
+            }
+        }
+        
+        function generateTruthTable() {
+            const count = parseInt(document.getElementById('variableCount').value);
+            currentVariables = [];
+            
+            // Get variable names
+            for (let i = 0; i < count; i++) {
+                const name = document.getElementById(`var${i}`).value.trim() || ['A', 'B', 'C', 'D'][i];
+                currentVariables.push(name);
+            }
+            
+            // Generate all possible combinations
+            const rows = Math.pow(2, count);
+            truthTable = [];
+            
+            for (let i = 0; i < rows; i++) {
+                const row = {
+                    inputs: [],
+                    output: 0,
+                    minterm: i
+                };
+                
+                // Convert decimal to binary for inputs
+                for (let j = count - 1; j >= 0; j--) {
+                    row.inputs.push((i >> j) & 1);
+                }
+                
+                truthTable.push(row);
+            }
+            
+            displayTruthTable();
+        }
+        
+        function displayTruthTable() {
+            const container = document.getElementById('truthTableContainer');
+            
+            if (truthTable.length === 0) {
+                container.innerHTML = '<p>Ingen sanningstabell genererad.</p>';
+                return;
+            }
+            
+            let html = '<table><thead><tr>';
+            
+            // Add input variable headers
+            currentVariables.forEach(variable => {
+                html += `<th>${variable}</th>`;
+            });
+            
+            // Add output header
+            html += '<th>F</th></tr></thead><tbody>';
+            
+            // Add data rows
+            truthTable.forEach((row, index) => {
+                html += '<tr>';
+                
+                // Add input values
+                row.inputs.forEach(input => {
+                    html += `<td>${input}</td>`;
+                });
+                
+                // Add editable output
+                html += `<td><input type="number" min="0" max="1" value="${row.output}" class="output-input" onchange="updateOutput(${index}, this.value)"></td>`;
+                
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+            
+            // Show output section but don't generate expressions until outputs are set
+            document.getElementById('outputSection').style.display = 'block';
+            updateExpressions();
+        }
+        
+        function updateOutput(index, value) {
+            truthTable[index].output = parseInt(value) || 0;
+            updateExpressions();
+        }
+        
+        function updateExpressions() {
+            if (truthTable.length === 0) return;
+            
+            // Find minterms (rows where output is 1)
+            const minterms = [];
+            const sopTerms = [];
+            
+            truthTable.forEach((row, index) => {
+                if (row.output === 1) {
+                    minterms.push(index);
+                    
+                    // Generate SOP term
+                    const term = row.inputs.map((input, i) => {
+                        return input === 1 ? currentVariables[i] : `${currentVariables[i]}'`;
+                    }).join('');
+                    
+                    sopTerms.push(term);
+                }
+            });
+            
+            // Display minterm expression
+            const mintermExpr = minterms.length > 0 ? `F = Σm(${minterms.join(', ')})` : 'F = 0';
+            document.getElementById('mintermExpression').innerHTML = `<strong>Minterm-uttryck:</strong> ${mintermExpr}`;
+            
+            // Display SOP expression
+            const sopExpr = sopTerms.length > 0 ? `F = ${sopTerms.join(' + ')}` : 'F = 0';
+            document.getElementById('sopExpression').innerHTML = `<strong>Kanonisk SOP:</strong> ${sopExpr}`;
+            
+            // Highlight minterm rows
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach((row, index) => {
+                if (truthTable[index].output === 1) {
+                    row.classList.add('minterm-row');
+                } else {
+                    row.classList.remove('minterm-row');
+                }
+            });
+        }
+        
+        function clearTable() {
+            document.getElementById('truthTableContainer').innerHTML = '';
+            document.getElementById('outputSection').style.display = 'none';
+            truthTable = [];
+        }
+    </script>
+</body>
+</html>
