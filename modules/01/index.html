@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 01: Grundläggande Datorteknik</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Datorteknik</h1>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Hem</a></li>
+                <li><a href="../01/index.html" class="active">Modul 01</a></li>
+                <li><a href="../02/index.html">Modul 02</a></li>
+                <li><a href="../04/index.html">Modul 04</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Modul 01: Grundläggande Datorteknik</h2>
+        
+        <section>
+            <h3>Introduktion</h3>
+            <p>Välkommen till den första modulen i datorteknik! I denna modul kommer vi att utforska grundläggande koncept som formar grunden för all datorteknik.</p>
+        </section>
+
+        <section>
+            <h3>Läringsmål</h3>
+            <ul>
+                <li>Förstå vad en dator är och dess grundläggande komponenter</li>
+                <li>Lära sig om binära talsystem och deras betydelse</li>
+                <li>Känna till von Neumann-arkitekturen</li>
+                <li>Förstå skillnaden mellan hårdvara och mjukvara</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>1.1 Vad är en dator?</h3>
+            <p>En dator är en elektronisk enhet som kan:</p>
+            <ul>
+                <li><strong>Ta emot data</strong> (input)</li>
+                <li><strong>Bearbeta data</strong> enligt instruktioner</li>
+                <li><strong>Lagra data</strong> temporärt eller permanent</li>
+                <li><strong>Producera resultat</strong> (output)</li>
+            </ul>
+            
+            <div class="component-embed" onclick="embedComponent('binary-converter', 'converter-demo')">
+                <p>Klicka för att ladda binär-konverterare</p>
+            </div>
+            <div id="converter-demo"></div>
+        </section>
+
+        <section>
+            <h3>1.2 Grundläggande komponenter</h3>
+            <h4>CPU (Central Processing Unit)</h4>
+            <p>Datorns "hjärna" som utför alla beräkningar och styr andra komponenter.</p>
+            
+            <h4>Minne (Memory)</h4>
+            <p>Lagrar data och instruktioner som CPU:n arbetar med.</p>
+            <ul>
+                <li><strong>RAM</strong> - Arbetsminne (volatilt)</li>
+                <li><strong>Lagring</strong> - Permanent lagring (hårddisk, SSD)</li>
+            </ul>
+            
+            <h4>In- och utenheter</h4>
+            <p>Möjliggör kommunikation mellan dator och användare:</p>
+            <ul>
+                <li>Tangentbord, mus (input)</li>
+                <li>Skärm, högtalare (output)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>1.3 Binära talsystem</h3>
+            <p>Datorer arbetar endast med binära tal (0 och 1) eftersom de bygger på elektriska kretsar som antingen är på (1) eller av (0).</p>
+            
+            <h4>Varför binärt?</h4>
+            <ul>
+                <li>Enkelt att implementera elektroniskt</li>
+                <li>Robust mot störningar</li>
+                <li>Möjliggör boolesk algebra</li>
+            </ul>
+            
+            <div class="exercise-container">
+                <h4>Övning 1.1: Binär konvertering</h4>
+                <p>Konvertera följande decimala tal till binärt:</p>
+                <p>8 = <input type="text" placeholder="Binärt tal"></p>
+                <p>15 = <input type="text" placeholder="Binärt tal"></p>
+                <p>32 = <input type="text" placeholder="Binärt tal"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>1.4 von Neumann-arkitekturen</h3>
+            <p>Den grundläggande arkitekturen som de flesta moderna datorer bygger på:</p>
+            <ul>
+                <li><strong>Processor</strong> - Utför instruktioner</li>
+                <li><strong>Minne</strong> - Lagrar både data och instruktioner</li>
+                <li><strong>Buss</strong> - Överför information mellan komponenter</li>
+                <li><strong>I/O-enheter</strong> - Kommunikation med omvärlden</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Sammanfattning</h3>
+            <p>I denna modul har vi lärt oss grunderna för datorteknik, inklusive datorns huvudkomponenter, binära talsystem och von Neumann-arkitekturen. Dessa koncept är fundamentala för att förstå hur datorer fungerar.</p>
+            
+            <div class="exercise-container">
+                <h4>Slutövning: Reflektion</h4>
+                <p>Beskriv med egna ord vad von Neumann-arkitekturen innebär:</p>
+                <textarea rows="4" cols="50" placeholder="Skriv din förklaring här..."></textarea><br>
+                <button class="btn exercise-check">Spara reflektion</button>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="../02/index.html" class="btn">Nästa: Modul 02 →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Datorteknik-kursen - Modul 01</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
