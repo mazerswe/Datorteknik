@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 04: Processorer och Arkitektur</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Datorteknik</h1>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Hem</a></li>
+                <li><a href="../01/index.html">Modul 01</a></li>
+                <li><a href="../02/index.html">Modul 02</a></li>
+                <li><a href="../04/index.html" class="active">Modul 04</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Modul 04: Processorer och Arkitektur</h2>
+        
+        <section>
+            <h3>Introduktion</h3>
+            <p>I denna avancerade modul utforskar vi processorernas inre funktioner, instruktionsuppsättningar och moderna datorarkitekturer.</p>
+        </section>
+
+        <section>
+            <h3>Läringsmål</h3>
+            <ul>
+                <li>Förstå processorns huvudkomponenter och funktioner</li>
+                <li>Lära sig om instruktionscykeln och exekvering</li>
+                <li>Känna till olika instruktionsuppsättningar</li>
+                <li>Förstå pipeline och parallellbearbetning</li>
+                <li>Utforska minneshierarkier och cache</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>4.1 Processorns arkitektur</h3>
+            <h4>Huvudkomponenter</h4>
+            <ul>
+                <li><strong>ALU (Arithmetic Logic Unit)</strong> - Utför aritmetiska och logiska operationer</li>
+                <li><strong>Register</strong> - Snabb lagring för temporära värden</li>
+                <li><strong>Kontrollenhet</strong> - Styr exekveringen av instruktioner</li>
+                <li><strong>Cache</strong> - Snabbt minneslagring</li>
+            </ul>
+
+            <div class="component-embed">
+                <h4>CPU-arkitektur diagram</h4>
+                <p>Visualisering av processorns komponenter och dataflöde</p>
+                <div style="border: 2px solid #3498db; padding: 1rem; margin: 1rem 0; background: white;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: #ecf0f1; padding: 0.5rem; text-align: center;">ALU</div>
+                        <div style="background: #ecf0f1; padding: 0.5rem; text-align: center;">Register</div>
+                        <div style="background: #ecf0f1; padding: 0.5rem; text-align: center;">Kontrollenhet</div>
+                        <div style="background: #ecf0f1; padding: 0.5rem; text-align: center;">Cache</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>4.2 Instruktionscykeln</h3>
+            <p>Processorn arbetar i en kontinuerlig cykel:</p>
+            <ol>
+                <li><strong>Fetch</strong> - Hämta instruktion från minnet</li>
+                <li><strong>Decode</strong> - Avkoda vad instruktionen betyder</li>
+                <li><strong>Execute</strong> - Utför instruktionen</li>
+                <li><strong>Store</strong> - Spara resultatet</li>
+            </ol>
+
+            <div class="exercise-container">
+                <h4>Övning 4.1: Instruktionscykel</h4>
+                <p>Vilka steg ingår i instruktionscykeln? Skriv dem i rätt ordning:</p>
+                <p>Steg 1: <input type="text" placeholder="Första steget"></p>
+                <p>Steg 2: <input type="text" placeholder="Andra steget"></p>
+                <p>Steg 3: <input type="text" placeholder="Tredje steget"></p>
+                <p>Steg 4: <input type="text" placeholder="Fjärde steget"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>4.3 Instruktionsuppsättningar</h3>
+            <h4>CISC vs RISC</h4>
+            <table style="border-collapse: collapse; border: 1px solid #ddd; width: 100%; margin: 1rem 0;">
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 0.5rem; background: #f8f9fa;">Egenskap</th>
+                    <th style="border: 1px solid #ddd; padding: 0.5rem; background: #f8f9fa;">CISC</th>
+                    <th style="border: 1px solid #ddd; padding: 0.5rem; background: #f8f9fa;">RISC</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Instruktionsset</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Stort, komplext</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Litet, enkelt</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Instruktionslängd</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Variabel</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Fast</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">Exempel</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">x86, x86-64</td>
+                    <td style="border: 1px solid #ddd; padding: 0.5rem;">ARM, MIPS</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h3>4.4 Pipeline och parallellbearbetning</h3>
+            <h4>Pipeline</h4>
+            <p>Teknik för att öka prestandan genom att dela upp instruktionsexekveringen i steg som kan överlappa.</p>
+            
+            <div style="background: #f8f9fa; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                <h5>Pipeline-exempel (4 steg):</h5>
+                <pre style="font-family: monospace; margin: 0;">
+Klockcykel: 1  2  3  4  5  6  7
+Instr. 1:   F  D  E  S
+Instr. 2:      F  D  E  S
+Instr. 3:         F  D  E  S
+Instr. 4:            F  D  E  S
+                </pre>
+                <p><small>F=Fetch, D=Decode, E=Execute, S=Store</small></p>
+            </div>
+
+            <h4>Parallellbearbetning</h4>
+            <ul>
+                <li><strong>Superskalar</strong> - Flera instruktioner per klockcykel</li>
+                <li><strong>Multi-core</strong> - Flera processorkärnor</li>
+                <li><strong>Hyperthreading</strong> - Virtuella kärnor</li>
+            </ul>
+
+            <div class="exercise-container">
+                <h4>Övning 4.2: Pipeline-förståelse</h4>
+                <p>Om en pipeline har 5 steg och varje steg tar 1 klockcykel, hur många klockcykler tar det att exekvera 3 instruktioner?</p>
+                <p>Utan pipeline: <input type="number" placeholder="Antal cykler"> cykler</p>
+                <p>Med pipeline: <input type="number" placeholder="Antal cykler"> cykler</p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>4.5 Minneshierarki och cache</h3>
+            <h4>Minneshierarki (från snabbast till långsammast)</h4>
+            <ol>
+                <li><strong>Register</strong> - Inom processorn</li>
+                <li><strong>L1 Cache</strong> - Första nivåns cache</li>
+                <li><strong>L2 Cache</strong> - Andra nivåns cache</li>
+                <li><strong>L3 Cache</strong> - Tredje nivåns cache (delad)</li>
+                <li><strong>RAM</strong> - Systemminne</li>
+                <li><strong>Lagring</strong> - Hårddisk/SSD</li>
+            </ol>
+
+            <h4>Cache-principer</h4>
+            <ul>
+                <li><strong>Temporal lokalitet</strong> - Nyligen använda data används igen</li>
+                <li><strong>Spatial lokalitet</strong> - Närliggande data används ofta tillsammans</li>
+            </ul>
+
+            <div class="exercise-container">
+                <h4>Övning 4.3: Cache-förstålse</h4>
+                <p>Förklara skillnaden mellan temporal och spatial lokalitet:</p>
+                <p>Temporal lokalitet: <input type="text" placeholder="Din förklaring" style="width: 300px;"></p>
+                <p>Spatial lokalitet: <input type="text" placeholder="Din förklaring" style="width: 300px;"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>4.6 Moderna processorfunktioner</h3>
+            <h4>Avancerade tekniker</h4>
+            <ul>
+                <li><strong>Branch prediction</strong> - Förutsäga vilken väg programmet tar</li>
+                <li><strong>Out-of-order execution</strong> - Exekvera instruktioner i optimal ordning</li>
+                <li><strong>Speculative execution</strong> - Exekvera instruktioner i förväg</li>
+                <li><strong>SIMD</strong> - En instruktion på flera data samtidigt</li>
+            </ul>
+
+            <h4>Energieffektivitet</h4>
+            <ul>
+                <li>Dynamic frequency scaling</li>
+                <li>Power gating</li>
+                <li>Clock gating</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Sammanfattning</h3>
+            <p>I denna modul har vi utforskat processorernas komplexa arkitektur, från grundläggande komponenter till avancerade tekniker som pipeline och cache. Förståelse av dessa koncept är avgörande för att förstå datorers prestanda och begränsningar.</p>
+            
+            <div class="exercise-container">
+                <h4>Slutprojekt: Processoranalys</h4>
+                <p>Välj en modern processor (t.ex. Intel Core i7, AMD Ryzen) och beskriv dess:</p>
+                <p>Arkitektur: <input type="text" placeholder="CISC/RISC, antal kärnor etc." style="width: 300px;"></p>
+                <p>Cache-struktur: <input type="text" placeholder="L1, L2, L3 storlekar" style="width: 300px;"></p>
+                <p>Specialfunktioner: <input type="text" placeholder="SIMD, virtualisering etc." style="width: 300px;"></p>
+                <button class="btn exercise-check">Spara analys</button>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="../02/index.html" class="btn btn-secondary">← Föregående: Modul 02</a>
+            <a href="../../index.html" class="btn">Tillbaka till startsidan</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Datorteknik-kursen - Modul 04</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

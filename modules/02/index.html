@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 02: Talsystem och Logik</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Datorteknik</h1>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Hem</a></li>
+                <li><a href="../01/index.html">Modul 01</a></li>
+                <li><a href="../02/index.html" class="active">Modul 02</a></li>
+                <li><a href="../04/index.html">Modul 04</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Modul 02: Talsystem och Logik</h2>
+        
+        <section>
+            <h3>Introduktion</h3>
+            <p>I denna modul fördjupar vi oss i olika talsystem som används inom datorteknik och utforskar grundläggande logiska operationer.</p>
+        </section>
+
+        <section>
+            <h3>Läringsmål</h3>
+            <ul>
+                <li>Förstå och konvertera mellan binära, oktala, decimala och hexadecimala talsystem</li>
+                <li>Lära sig boolesk algebra och logiska operationer</li>
+                <li>Förstå sanningstabeller och logiska grindar</li>
+                <li>Tillämpa De Morgans lagar</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>2.1 Talsystem</h3>
+            <h4>Decimalt talsystem (bas 10)</h4>
+            <p>Det talsystem vi använder dagligen med siffrorna 0-9.</p>
+            
+            <h4>Binärt talsystem (bas 2)</h4>
+            <p>Använder endast siffrorna 0 och 1. Varje position representerar en potens av 2.</p>
+            <p>Exempel: 1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11₁₀</p>
+            
+            <h4>Oktalt talsystem (bas 8)</h4>
+            <p>Använder siffrorna 0-7. Varje position representerar en potens av 8.</p>
+            <p>Exempel: 13₈ = 1×8¹ + 3×8⁰ = 8 + 3 = 11₁₀</p>
+            
+            <h4>Hexadecimalt talsystem (bas 16)</h4>
+            <p>Använder siffrorna 0-9 och bokstäverna A-F (A=10, B=11, C=12, D=13, E=14, F=15).</p>
+            <p>Exempel: B₁₆ = 11₁₀</p>
+
+            <div class="exercise-container">
+                <h4>Övning 2.1: Talsystemskonvertering</h4>
+                <p>Konvertera 25₁₀ till:</p>
+                <p>Binärt: <input type="text" placeholder="Binär representation"></p>
+                <p>Oktalt: <input type="text" placeholder="Oktal representation"></p>
+                <p>Hexadecimalt: <input type="text" placeholder="Hexadecimal representation"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>2.2 Boolesk algebra</h3>
+            <p>Matematik som arbetar med logiska värden (sant/falskt eller 1/0).</p>
+            
+            <h4>Grundläggande operationer</h4>
+            <ul>
+                <li><strong>AND (∧)</strong>: Sant endast om båda ingångarna är sanna</li>
+                <li><strong>OR (∨)</strong>: Sant om minst en ingång är sann</li>
+                <li><strong>NOT (¬)</strong>: Inverterar värdet</li>
+            </ul>
+
+            <div class="component-embed" onclick="embedComponent('logic-gate', 'logic-demo')">
+                <p>Klicka för att ladda logisk grind-simulator</p>
+            </div>
+            <div id="logic-demo"></div>
+        </section>
+
+        <section>
+            <h3>2.3 Sanningstabeller</h3>
+            <p>Tabeller som visar alla möjliga kombinationer av ingångar och motsvarande utgångar.</p>
+            
+            <h4>AND-grind</h4>
+            <table style="border-collapse: collapse; border: 1px solid #ddd; margin: 1rem 0;">
+                <tr><th style="border: 1px solid #ddd; padding: 0.5rem;">A</th><th style="border: 1px solid #ddd; padding: 0.5rem;">B</th><th style="border: 1px solid #ddd; padding: 0.5rem;">A ∧ B</th></tr>
+                <tr><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td></tr>
+                <tr><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td><td style="border: 1px solid #ddd; padding: 0.5rem;">1</td><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td></tr>
+                <tr><td style="border: 1px solid #ddd; padding: 0.5rem;">1</td><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td><td style="border: 1px solid #ddd; padding: 0.5rem;">0</td></tr>
+                <tr><td style="border: 1px solid #ddd; padding: 0.5rem;">1</td><td style="border: 1px solid #ddd; padding: 0.5rem;">1</td><td style="border: 1px solid #ddd; padding: 0.5rem;">1</td></tr>
+            </table>
+
+            <div class="exercise-container">
+                <h4>Övning 2.2: Skapa sanningstabell</h4>
+                <p>Skapa en sanningstabell för OR-operationen:</p>
+                <p>A=0, B=0: Resultat = <input type="text" placeholder="0 eller 1" style="width: 50px;"></p>
+                <p>A=0, B=1: Resultat = <input type="text" placeholder="0 eller 1" style="width: 50px;"></p>
+                <p>A=1, B=0: Resultat = <input type="text" placeholder="0 eller 1" style="width: 50px;"></p>
+                <p>A=1, B=1: Resultat = <input type="text" placeholder="0 eller 1" style="width: 50px;"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>2.4 De Morgans lagar</h3>
+            <p>Viktiga regler inom boolesk algebra:</p>
+            <ul>
+                <li>¬(A ∧ B) = ¬A ∨ ¬B</li>
+                <li>¬(A ∨ B) = ¬A ∧ ¬B</li>
+            </ul>
+            <p>Dessa lagar visar hur man kan omvandla logiska uttryck.</p>
+
+            <div class="exercise-container">
+                <h4>Övning 2.3: Tillämpa De Morgans lagar</h4>
+                <p>Förenkla följande uttryck med hjälp av De Morgans lagar:</p>
+                <p>¬(A ∧ B) = <input type="text" placeholder="Förenklat uttryck"></p>
+                <p>¬(C ∨ D) = <input type="text" placeholder="Förenklat uttryck"></p>
+                <button class="btn exercise-check">Kontrollera svar</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>2.5 Praktiska tillämpningar</h3>
+            <p>Logiska operationer används i:</p>
+            <ul>
+                <li>Digitala kretsar</li>
+                <li>Programmering (if-satser, loopar)</li>
+                <li>Databassökningar</li>
+                <li>Sökmotorer</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Sammanfattning</h3>
+            <p>Vi har lärt oss om olika talsystem, boolesk algebra och logiska operationer. Dessa koncept är grundläggande för att förstå hur datorer bearbetar information på den mest fundamentala nivån.</p>
+        </section>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="../01/index.html" class="btn btn-secondary">← Föregående: Modul 01</a>
+            <a href="../04/index.html" class="btn">Nästa: Modul 04 →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Datorteknik-kursen - Modul 02</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
