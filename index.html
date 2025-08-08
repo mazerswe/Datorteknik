@@ -2,77 +2,125 @@
 <html lang="sv">
 <head>
   <meta charset="utf-8" />
-  <title>Datorteknik – Interaktiv plattform v0.1</title>
+  <title>Datorteknik – Interaktiv plattform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./assets/style.css">
+  <!-- Använd relativ sökväg. På undersidor: ../assets/style.css -->
+  <link rel="stylesheet" href="./assets/style.css?v=20250808">
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>Datorteknik – Interaktiv plattform</h1>
-      <nav>
-        <a href="./index.html">Hem</a>
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="./index.html" aria-current="page">Hem</a>
         <a href="./modules/01-talsystem.html">Modul 01</a>
         <a href="./modules/02-boolean-algebra.html">Modul 02</a>
         <a href="./modules/04-aritmetiska-nat.html">Modul 04</a>
-        <a href="./tools/base-converter.html">Basomvandlare</a>
-        <a href="./tools/alu-8.html">ALU</a>
+        <a href="./tools/base-converter.html">Verktyg</a>
       </nav>
     </div>
   </header>
 
-    <main>
-      <div class="card">
-        <p>Detta är kursens interaktiva yta. Använd verktygen för att utforska talsystem, boolesk algebra och aritmetiska nät.</p>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">v0.1</span>
+      <h1>Interaktiv lärplattform för Datorteknik</h1>
+      <p class="lead">Utforska talsystem, boolesk algebra och aritmetiska nät med praktiska verktyg och övningar. Allt kör i webbläsaren – snabbt och tillgängligt.</p>
+      <div class="cta">
+        <a class="btn" href="./tools/base-converter.html">Gå till verktygen</a>
+        <a class="btn secondary" href="./modules/01-talsystem.html">Börja med Modul 01</a>
       </div>
+    </div>
+  </section>
 
-      <div class="grid">
-        <section class="card">
-          <h2>Basomvandlare</h2>
-          <p>Decimal ↔ Binär ↔ Hex, tvåkomplement och förklaringar.</p>
-          <p><a href="./tools/base-converter.html">Öppna</a></p>
-        </section>
+  <main>
+    <div class="container">
+      <section>
+        <h2 class="section-title">Verktyg</h2>
+        <div class="grid cols-3">
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Basomvandlare</h3>
+              <p class="meta">Decimal ↔ Binär ↔ Hex. Tvåkomplement och stegvisa förklaringar.</p>
+            </div>
+            <div class="actions">
+              <a href="./tools/base-converter.html">Öppna</a>
+            </div>
+          </article>
 
-        <section class="card">
-          <h2>Binär adderare/subtraherare</h2>
-          <p>Unsigned vs tvåkomplement, flaggor Z/N/C/V.</p>
-          <p><a href="./tools/binary-adder.html">Öppna</a></p>
-        </section>
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Binär adderare/subtraherare</h3>
+              <p class="meta">Unsigned vs tvåkomplement. Flaggor Z/N/C/V.</p>
+            </div>
+            <div class="actions">
+              <a href="./tools/binary-adder.html">Öppna</a>
+            </div>
+          </article>
 
-        <section class="card">
-          <h2>Sanningstabell Σm()</h2>
-          <p>2–4 variabler, minterm-index och SOP.</p>
-          <p><a href="./tools/truth-table.html">Öppna</a></p>
-        </section>
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Sanningstabell Σm()</h3>
+              <p class="meta">2–4 variabler, minterm-index och SOP.</p>
+            </div>
+            <div class="actions">
+              <a href="./tools/truth-table.html">Öppna</a>
+            </div>
+          </article>
 
-        <section class="card">
-          <h2>8-bitars ALU</h2>
-          <p>AND/OR/XOR/NOT/ADD/SUB/INC/DEC/SHL/SHR + flaggor.</p>
-          <p><a href="./tools/alu-8.html">Öppna</a></p>
-        </section>
-      </div>
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">8‑bitars ALU</h3>
+              <p class="meta">AND/OR/XOR/NOT/ADD/SUB/INC/DEC/SHL/SHR + flaggor.</p>
+            </div>
+            <div class="actions">
+              <a href="./tools/alu-8.html">Öppna</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <div class="card">
-        <h3>Moduler</h3>
-        <ul>
-          <li><a href="./modules/01-talsystem.html">Modul 01 – Talsystem och tvåkomplement</a></li>
-          <li><a href="./modules/02-boolean-algebra.html">Modul 02 – Boolesk algebra och sanningstabeller</a></li>
-          <li><a href="./modules/04-aritmetiska-nat.html">Modul 04 – Aritmetiska nät och ALU</a></li>
-        </ul>
-      </div>
+      <section>
+        <h2 class="section-title">Moduler</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3 class="mt-0">Modul 01 – Talsystem och tvåkomplement</h3>
+            <p class="muted">Grunderna i baser och signed representation.</p>
+            <a href="./modules/01-talsystem.html">Till modul 01</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 02 – Boolesk algebra och sanningstabeller</h3>
+            <p class="muted">Operatorer, kanoniska former och Σm().</p>
+            <a href="./modules/02-boolean-algebra.html">Till modul 02</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 04 – Aritmetiska nät och ALU</h3>
+            <p class="muted">Adderare, flaggor och ALU-operationer.</p>
+            <a href="./modules/04-aritmetiska-nat.html">Till modul 04</a>
+          </article>
+        </div>
+      </section>
 
-      <div class="card small">
-        <h3>Tips</h3>
-        <ul>
-          <li>Relativa länkar (./assets/…) fungerar både lokalt och på /Datorteknik/.</li>
-          <li>404.html hanterar djupa länkar för SPA/enkla statiska rutter.</li>
-          <li>Alla ändringar på main deployas automatiskt via GitHub Actions.</li>
-        </ul>
-      </div>
-    </main>
+      <section>
+        <h2 class="section-title">Tips</h2>
+        <div class="card">
+          <ul>
+            <li>På startsidan: <code>&lt;link rel="stylesheet" href="./assets/style.css"&gt;</code></li>
+            <li>På undersidor: <code>&lt;link rel="stylesheet" href="../assets/style.css"&gt;</code></li>
+            <li>GitHub Actions publicerar automatiskt ändringar på main.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
 
-  <footer>
-    <main>© <span id="y"></span> Datorteknik</main>
+  <footer class="site">
+    <div class="container center">
+      © <span id="y"></span> Datorteknik
+    </div>
   </footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
