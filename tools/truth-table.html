@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Sanningstabell Σm()</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Sanningstabell och Σm(mintermer)</h1>
+      <nav><a href="../index.html">Hem</a> <a href="../modules/02-boolean-algebra.html">Modul 02</a></nav>
+    </div>
+  </header>
+  <main>
+    <div class="card">
+      <div class="field">
+        <label for="vars">Antal variabler</label>
+        <select id="vars"><option>2</option><option selected>3</option><option>4</option></select>
+        <label for="names">Namn (komma-separerade)</label>
+        <input id="names" type="text" value="A,B,C" style="min-width:240px">
+      </div>
+      <div class="field">
+        <button id="gen">Generera tabell</button>
+        <span class="small">Klicka på utkolumnen för att sätta 0/1.</span>
+      </div>
+    </div>
+
+    <div class="card" id="tableWrap"></div>
+
+    <div class="card">
+      <h3>Σm()-form</h3>
+      <div id="sigma" class="mono">—</div>
+      <div class="small">Σm(index) listar vilka rader (mintermer) som ger 1. Index räknas i binärt A..D → 0..2ⁿ−1.</div>
+    </div>
+  </main>
+  <footer><main>© <span id="y"></span> Datorteknik</main></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const bin = (v,n)=> v.toString(2).padStart(n,'0');
+
+    function build(){
+      const n = +$('vars').value;
+      const names = $('names').value.split(',').map(s=>s.trim()).filter(Boolean).slice(0,n);
+      while (names.length<n) names.push(String.fromCharCode(65+names.length)); // A, B, ...
+
+      const rows = 1<<n;
+      const wrap = $('tableWrap');
+      const tbl = document.createElement('table');
+      const thead = document.createElement('thead');
+      const thr = document.createElement('tr');
+      names.forEach(v => { const th=document.createElement('th'); th.textContent=v; thr.appendChild(th); });
+      const thf = document.createElement('th'); thf.textContent='f'; thr.appendChild(thf);
+      thead.appendChild(thr); tbl.appendChild(thead);
+      const tbody = document.createElement('tbody');
+
+      for (let i=0;i<rows;i++){
+        const tr = document.createElement('tr');
+        const pattern = bin(i,n);
+        for (let j=0;j<n;j++){
+          const td=document.createElement('td'); td.textContent = pattern[j]; td.className='mono'; tr.appendChild(td);
+        }
+        const out=document.createElement('td');
+        out.textContent = '0'; out.className='mono'; out.style.cursor='pointer';
+        out.dataset.index = i;
+        out.addEventListener('click', ()=> { out.textContent = out.textContent==='0'?'1':'0'; renderSigma(); });
+        tr.appendChild(out);
+        tbody.appendChild(tr);
+      }
+      tbl.appendChild(tbody);
+      wrap.innerHTML = ''; wrap.appendChild(tbl);
+      renderSigma();
+    }
+
+    function renderSigma(){
+      const t = $('tableWrap').querySelector('tbody');
+      if (!t) { $('sigma').textContent = '—'; return; }
+      const ones = [];
+      [...t.querySelectorAll('tr')].forEach((tr,idx)=>{
+        const f = tr.lastChild.textContent.trim();
+        if (f==='1') ones.push(idx);
+      });
+      $('sigma').textContent = ones.length ? `f(${document.getElementById('names').value}) = Σm(${ones.join(',')})` : 'f = 0';
+    }
+
+    $('gen').addEventListener('click', build);
+    $('y').textContent = new Date().getFullYear();
+    build();
+  </script>
+</body>
+</html>
