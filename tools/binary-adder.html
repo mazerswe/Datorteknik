@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Binär adderare/subtraherare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Binär adderare/subtraherare</h1>
+      <nav><a href="../index.html">Hem</a> <a href="../modules/04-aritmetiska-nat.html">Modul 04</a></nav>
+    </div>
+  </header>
+  <main>
+    <div class="card">
+      <div class="field">
+        <label for="ain">A</label>
+        <input id="ain" type="text" value="0x14">
+        <label for="bin">B</label>
+        <input id="bin" type="text" value="0x0E">
+      </div>
+      <div class="field">
+        <label for="bits">Bitbredd</label>
+        <select id="bits"><option>4</option><option selected>8</option><option>16</option></select>
+        <label for="mode">Läge</label>
+        <select id="mode">
+          <option value="uadd">ADD (unsigned)</option>
+          <option value="sadd" selected>ADD (tvåkomplement)</option>
+          <option value="ssub">SUB (A − B, tvåkomplement)</option>
+        </select>
+      </div>
+      <div class="field">
+        <button id="calc">Beräkna</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h3>Resultat</h3>
+        <div class="mono" id="res">—</div>
+        <div class="small" id="flags">Z N C V: —</div>
+      </section>
+      <section class="card">
+        <h3>Binärt</h3>
+        <div class="mono small" id="binview">—</div>
+      </section>
+    </div>
+
+    <div class="card">
+      <h3>Förklaring</h3>
+      <div id="explain" class="mono small">—</div>
+    </div>
+  </main>
+  <footer><main>© <span id="y"></span> Datorteknik</main></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const parseVal = (s)=> {
+      s = s.trim();
+      if (/^0x/i.test(s)) return parseInt(s,16)>>>0;
+      if (/^[01]+b$/i.test(s)) return parseInt(s,2)>>>0;
+      return parseInt(s,10)>>>0;
+    };
+    const padBin = (u,b)=> (u>>>0).toString(2).padStart(b,'0').replace(/(.{4})/g,"$1 ").trim();
+    const padHex = (u,b)=> "0x"+(u>>>0).toString(16).toUpperCase().padStart(Math.ceil(b/4),'0');
+    const mask = b => (b>=32?0xFFFFFFFF:((1<<b)>>>0))-0;
+    const toSigned = (u,b)=> ((u & (1<<(b-1)))? (u - (1<<b)) : u);
+
+    function add(a,b,bits){
+      const full = (a>>>0) + (b>>>0);
+      const res = full & mask(bits);
+      const c = (full >>> bits) & 1;
+      // signed overflow: if signs equal and sign of res differs
+      const sa = (a>>(bits-1))&1, sb=(b>>(bits-1))&1, sr=(res>>(bits-1))&1;
+      const v = (sa===sb) && (sr!==sa) ? 1:0;
+      const z = (res===0) ? 1:0;
+      const n = sr;
+      return {res, flags:{Z:z,N:n,C:c,V:v}};
+    }
+    function sub(a,b,bits){
+      // a + (~b + 1)
+      const nb = ((~b)>>>0) & mask(bits);
+      const full = (a>>>0) + (nb>>>0) + 1;
+      const res = full & mask(bits);
+      const borrow = ((a>>>0) < (b>>>0)) ? 1:0;
+      const c = borrow ? 0:1; // C=1 means no borrow in many conventions
+      const sa=(a>>(bits-1))&1, sb=(b>>(bits-1))&1, sr=(res>>(bits-1))&1;
+      const v = (sa!==sb) && (sr!==sa) ? 1:0;
+      const z = (res===0)?1:0;
+      const n = sr;
+      return {res, flags:{Z:z,N:n,C:c,V:v}};
+    }
+
+    function run(){
+      const bits = +$('bits').value;
+      const A = parseVal($('ain').value) & mask(bits);
+      const B = parseVal($('bin').value) & mask(bits);
+      const mode = $('mode').value;
+
+      let out, note='';
+      if (mode==='uadd'){ out = add(A,B,bits); note='Unsigned addition, C=carry out.'; }
+      else if (mode==='sadd'){ out = add(A,B,bits); note='Signed (tvåkomplement), V=overflow.'; }
+      else { out = sub(A,B,bits); note='Signed subtraktion A−B = A + (−B)'; }
+
+      $('res').textContent = `${padHex(out.res,bits)}  (unsigned=${out.res}, signed=${toSigned(out.res,bits)})`;
+      $('flags').textContent = `Z=${out.flags.Z} N=${out.flags.N} C=${out.flags.C} V=${out.flags.V}`;
+      $('binview').textContent =
+        `A: ${padBin(A,bits)}\nB: ${padBin(B,bits)}\n—\nR: ${padBin(out.res,bits)}`;
+      $('explain').textContent = note;
+    }
+
+    $('calc').addEventListener('click', run);
+    ['ain','bin','bits','mode'].forEach(id=>$(id).addEventListener('input', run));
+    $('y').textContent = new Date().getFullYear();
+    run();
+  </script>
+</body>
+</html>
