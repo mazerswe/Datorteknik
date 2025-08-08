@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <title>Omdirigerar …</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/" />
+    </noscript>
+    <script>
+      // Minimal SPA-fallback: skicka besökaren till repo-roten.
+      // Ex: /Datorteknik/any/path -> /Datorteknik/
+      (function () {
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        var base = '/' + (segments[0] || '') + '/';
+        // Behåll ev. hash som klientrouter kan använda
+        var hash = window.location.hash || '';
+        window.location.replace(base + hash);
+      })();
+    </script>
+  </head>
+  <body>Omdirigerar …</body>
+</html>
