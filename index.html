@@ -1,64 +1,79 @@
 <!doctype html>
 <html lang="sv">
-  <head>
-    <meta charset="utf-8" />
-    <title>Datorteknik – v0.1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      :root { color-scheme: light dark; --bg: #0b1020; --fg: #e6edf3; --accent:#1f6feb; }
-      body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; background: var(--bg); color: var(--fg); }
-      header { padding: 1rem; border-bottom: 1px solid #2d333b; background: #11172a; position: sticky; top: 0; }
-      header h1 { margin: 0; font-size: 1.25rem; }
-      main { max-width: 960px; margin: 0 auto; padding: 1rem; }
-      a { color: var(--accent); }
-      .card { background:#0f1629; border:1px solid #263242; border-radius:12px; padding:1rem; margin:1rem 0; }
-      .grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-      footer { padding: 2rem 1rem; color:#9aa7b5; border-top: 1px solid #2d333b; margin-top:2rem; }
-      code { background:#0c1324; padding:.2rem .4rem; border-radius:6px; }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Datorteknik – Interaktiv plattform v0.1</h1>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <title>Datorteknik – Interaktiv plattform v0.1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Datorteknik – Interaktiv plattform</h1>
+      <nav>
+        <a href="./index.html">Hem</a>
+        <a href="./modules/01-talsystem.html">Modul 01</a>
+        <a href="./modules/02-boolean-algebra.html">Modul 02</a>
+        <a href="./modules/04-aritmetiska-nat.html">Modul 04</a>
+        <a href="./tools/base-converter.html">Basomvandlare</a>
+        <a href="./tools/alu-8.html">ALU</a>
+      </nav>
+    </div>
+  </header>
+
     <main>
-      <p>Den här sidan publiceras via GitHub Pages. Lägg dina komponenter och modulsidor här eller i undermappar.</p>
+      <div class="card">
+        <p>Detta är kursens interaktiva yta. Använd verktygen för att utforska talsystem, boolesk algebra och aritmetiska nät.</p>
+      </div>
 
       <div class="grid">
         <section class="card">
           <h2>Basomvandlare</h2>
-          <p>Interaktiv dec/bin/hex, tvåkomplement, stegvisa förklaringar.</p>
-          <p><a href="./tools/base-converter.html">Öppna basomvandlare</a></p>
+          <p>Decimal ↔ Binär ↔ Hex, tvåkomplement och förklaringar.</p>
+          <p><a href="./tools/base-converter.html">Öppna</a></p>
         </section>
+
         <section class="card">
           <h2>Binär adderare/subtraherare</h2>
-          <p>Unsigned/tvåkomplement med flaggor Z/N/C/V.</p>
-          <p><a href="./tools/binary-adder.html">Öppna adderare</a></p>
+          <p>Unsigned vs tvåkomplement, flaggor Z/N/C/V.</p>
+          <p><a href="./tools/binary-adder.html">Öppna</a></p>
         </section>
+
         <section class="card">
-          <h2>Sanningstabell</h2>
-          <p>2–4 variabler, Σm()-form, kanonisk SOP.</p>
-          <p><a href="./tools/truth-table.html">Öppna sanningstabell</a></p>
+          <h2>Sanningstabell Σm()</h2>
+          <p>2–4 variabler, minterm-index och SOP.</p>
+          <p><a href="./tools/truth-table.html">Öppna</a></p>
         </section>
+
         <section class="card">
           <h2>8-bitars ALU</h2>
           <p>AND/OR/XOR/NOT/ADD/SUB/INC/DEC/SHL/SHR + flaggor.</p>
-          <p><a href="./tools/alu-8.html">Öppna ALU</a></p>
+          <p><a href="./tools/alu-8.html">Öppna</a></p>
         </section>
       </div>
 
       <div class="card">
+        <h3>Moduler</h3>
+        <ul>
+          <li><a href="./modules/01-talsystem.html">Modul 01 – Talsystem och tvåkomplement</a></li>
+          <li><a href="./modules/02-boolean-algebra.html">Modul 02 – Boolesk algebra och sanningstabeller</a></li>
+          <li><a href="./modules/04-aritmetiska-nat.html">Modul 04 – Aritmetiska nät och ALU</a></li>
+        </ul>
+      </div>
+
+      <div class="card small">
         <h3>Tips</h3>
         <ul>
-          <li>Använd relativa länkar (./assets/...) så fungerar allt under /Datorteknik/.</li>
-          <li>Lägg till <code>.nojekyll</code> för att undvika problem med filer som börjar på underscore.</li>
-          <li>För SPA-rutter, använd hash-baserad routing (t.ex. <code>#/alu</code>) eller behåll 404.html-omdirigeringen.</li>
+          <li>Relativa länkar (./assets/…) fungerar både lokalt och på /Datorteknik/.</li>
+          <li>404.html hanterar djupa länkar för SPA/enkla statiska rutter.</li>
+          <li>Alla ändringar på main deployas automatiskt via GitHub Actions.</li>
         </ul>
       </div>
     </main>
-    <footer>
-      <small>© <span id="y"></span> Datorteknik</small>
-    </footer>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-  </body>
+
+  <footer>
+    <main>© <span id="y"></span> Datorteknik</main>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
 </html>
