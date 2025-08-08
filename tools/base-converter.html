@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Basomvandlare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Basomvandlare</h1>
+      <nav><a href="../index.html">Hem</a> <a href="../modules/01-talsystem.html">Modul 01</a></nav>
+    </div>
+  </header>
+  <main>
+    <div class="card">
+      <p class="small">Skriv ett tal och välj inbas. Tvåkomplement gör att binärt tal tolkas/visas som signed inom vald bitbredd.</p>
+      <div class="field">
+        <label for="inval">Tal</label>
+        <input id="inval" type="text" placeholder="Ex: 1011, -42, 0x2A, 2Ah">
+      </div>
+      <div class="field">
+        <label for="inbase">Inbas</label>
+        <select id="inbase">
+          <option value="2">Binär (2)</option>
+          <option value="10" selected>Decimal (10)</option>
+          <option value="16">Hex (16)</option>
+        </select>
+        <label for="bits" style="width:auto">Bitbredd</label>
+        <select id="bits">
+          <option>4</option><option selected>8</option><option>16</option><option>32</option>
+        </select>
+        <label style="width:auto">
+          <input id="twos" type="checkbox"> Tvåkomplement
+        </label>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h3>Decimal</h3>
+        <div id="out-dec" class="mono">—</div>
+      </section>
+      <section class="card">
+        <h3>Binär</h3>
+        <div id="out-bin" class="mono">—</div>
+      </section>
+      <section class="card">
+        <h3>Hex</h3>
+        <div id="out-hex" class="mono">—</div>
+      </section>
+    </div>
+
+    <div class="card small" id="range">Intervall: —</div>
+
+    <div class="card">
+      <h3>Förklaring</h3>
+      <div id="explain" class="mono small">—</div>
+    </div>
+  </main>
+  <footer><main>© <span id="y"></span> Datorteknik</main></footer>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+    const mask = (n)=> (n>=32?0xFFFFFFFF:((1<<n)>>>0))-0 + (n===32?0:0); // 32-bit edge not perfect but fine for 32 max here
+    function parseInput(str, base) {
+      str = String(str).trim();
+      if (str.startsWith("0x") || /[A-F]/i.test(str)) base = 16;
+      if (/^[01]+b$/i.test(str)) { base = 2; str = str.slice(0,-1); }
+      if (/^-?0b[01]+$/i.test(str)) { base = 2; str = str.replace(/^0b/i,''); }
+      if (/^-?0x[0-9a-f]+$/i.test(str)) { base = 16; str = str.replace(/^0x/i,''); }
+      const neg = str.startsWith("-");
+      const body = neg ? str.slice(1) : str;
+      const val = parseInt(body, base);
+      return { val: isNaN(val)?NaN:val*(neg?-1:1), base, neg };
+    }
+    function toSigned(u, bits){
+      const m = 1 << (bits-1);
+      return (u & m) ? (u - (1<<bits)) : u;
+    }
+    function clampBits(v, bits){ const m=(bits>=32?0xFFFFFFFF:((1<<bits)>>>0))-0; return v & m; }
+    function padBin(u,b){ let s=(u>>>0).toString(2); if (s.length>b) s=s.slice(-b); return s.padStart(b,'0').replace(/(.{4})/g,"$1 ").trim(); }
+    function padHex(u,b){ const n=Math.ceil(b/4); let s=(u>>>0).toString(16).toUpperCase(); if (s.length>n) s=s.slice(-n); return "0x"+s.padStart(n,'0'); }
+
+    function update(){
+      const bits = +$('bits').value;
+      const twos = $('twos').checked;
+      const { val:raw, base } = parseInput($('inval').value, +$('inbase').value);
+      if (isNaN(raw)) {
+        $('out-dec').textContent = '—'; $('out-bin').textContent='—'; $('out-hex').textContent='—';
+        $('range').textContent = 'Intervall: —'; $('explain').textContent='—';
+        return;
+      }
+      const unsigned = clampBits(raw, bits) >>> 0;
+      const signed = toSigned(unsigned, bits);
+
+      const shownDec = twos ? signed : (raw<0 ? - (clampBits(-raw, bits)) : unsigned);
+      $('out-dec').textContent = String(shownDec);
+      $('out-bin').textContent = padBin(unsigned, bits) + (twos ? ' (tvåkomplement)' : '');
+      $('out-hex').textContent = padHex(unsigned, bits);
+
+      const minU = 0, maxU = (bits>=31?0x7FFFFFFF: (1<<bits) ) - 1; // approx for 32
+      const minS = - (1 << (bits-1)), maxS = (1 << (bits-1)) - 1;
+      $('range').textContent = 'Intervall: ' + (twos ? `[${minS}, ${maxS}] (signed)` : `[${minU}, ${maxU}] (unsigned)`);
+      $('explain').textContent =
+        `Inbas=${base}, tolkning=${twos?'signed (tvåkomplement)':'unsigned'}, bitbredd=${bits}\n`+
+        `Unsigned: ${unsigned}  | Signed: ${signed}\n`+
+        `Bin: ${padBin(unsigned,bits)}  | Hex: ${padHex(unsigned,bits)}`;
+    }
+
+    ['inval','inbase','bits','twos'].forEach(id => $(id).addEventListener('input', update));
+    $('y').textContent = new Date().getFullYear();
+    $('inval').value = '42';
+    update();
+  </script>
+</body>
+</html>
