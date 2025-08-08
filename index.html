@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-bitars ALU - Datorteknik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>8-bitars ALU</h1>
+            <p>Aritmetisk-logisk enhet med 8-bit operationer</p>
+        </header>
+
+        <main>
+            <div class="alu-interface">
+                <div class="inputs-section">
+                    <h2>Indata</h2>
+                    <div class="input-group">
+                        <label for="inputA">Operand A (0-255):</label>
+                        <input type="number" id="inputA" min="0" max="255" value="42">
+                        <span class="binary-display" id="binaryA">00101010</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="inputB">Operand B (0-255):</label>
+                        <input type="number" id="inputB" min="0" max="255" value="15">
+                        <span class="binary-display" id="binaryB">00001111</span>
+                    </div>
+                </div>
+
+                <div class="operations-section">
+                    <h2>Operationer</h2>
+                    <div class="operation-buttons">
+                        <button class="op-btn logical" data-operation="and">AND</button>
+                        <button class="op-btn logical" data-operation="or">OR</button>
+                        <button class="op-btn logical" data-operation="xor">XOR</button>
+                        <button class="op-btn logical" data-operation="not">NOT A</button>
+                        <button class="op-btn arithmetic" data-operation="add">ADD</button>
+                        <button class="op-btn arithmetic" data-operation="sub">SUB</button>
+                        <button class="op-btn arithmetic" data-operation="inc">INC A</button>
+                        <button class="op-btn arithmetic" data-operation="dec">DEC A</button>
+                        <button class="op-btn shift" data-operation="shl">SHL A</button>
+                        <button class="op-btn shift" data-operation="shr">SHR A</button>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h2>Resultat</h2>
+                    <div class="result-display">
+                        <div class="result-value">
+                            <span class="decimal" id="resultDecimal">-</span>
+                            <span class="binary" id="resultBinary">--------</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flags-section">
+                    <h2>Flaggor</h2>
+                    <div class="flags-display">
+                        <div class="flag" id="zeroFlag">
+                            <span class="flag-name">Z</span>
+                            <span class="flag-description">Zero</span>
+                        </div>
+                        <div class="flag" id="carryFlag">
+                            <span class="flag-name">C</span>
+                            <span class="flag-description">Carry</span>
+                        </div>
+                        <div class="flag" id="negativeFlag">
+                            <span class="flag-name">N</span>
+                            <span class="flag-description">Negative</span>
+                        </div>
+                        <div class="flag" id="overflowFlag">
+                            <span class="flag-name">V</span>
+                            <span class="flag-description">Overflow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="alu.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
