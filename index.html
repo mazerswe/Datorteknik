@@ -1,118 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datorteknik</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <title>Datorteknik – Interaktiv plattform</title>
+  <meta name="description" content="Interaktiv lärplattform för datorteknik med verktyg och övningar för talsystem, boolesk algebra, CPU-arkitektur, minnen och assemblerspråk." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
+  <link rel="stylesheet" href="./assets/style.css?v=20250808">
+  <!-- Lägg till mörkt tema och komponent-styles från PR #22 -->
+  <link rel="stylesheet" href="./styles.css?v=20250808">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">Datorteknik</h1>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#hem" class="nav-link">Hem</a></li>
-                    <li><a href="#kurser" class="nav-link">Kurser</a></li>
-                    <li><a href="#resurser" class="nav-link">Resurser</a></li>
-                    <li><a href="#om" class="nav-link">Om</a></li>
-                </ul>
-            </nav>
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+  
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="./index.html" aria-current="page">Hem</a>
+        <a href="./modules/00-oversikt.html">Översikt</a>
+        <a href="./modules/01-talsystem.html">Modul 01</a>
+        <a href="./modules/02-boolean-algebra.html">Modul 02</a>
+        <a href="./modules/03-cpu-arkitektur.html">Modul 03</a>
+        <a href="./modules/04-aritmetiska-nat.html">Modul 04</a>
+        <a href="./modules/05-minnen.html">Modul 05</a>
+        <a href="./modules/06-buss-och-io.html">Modul 06</a>
+        <a href="./modules/07-isa-och-assembly.html">Modul 07</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="badge">v0.2</span>
+      <h1>Interaktiv lärplattform för Datorteknik</h1>
+      <p class="lead">Utforska koder, talsystem, boolesk algebra, aritmetiska/sekvensnät, CPU-arkitektur, minnen, bussar/IO och assemblerspråk med praktiska verktyg och övningar.</p>
+      <div class="cta">
+        <a class="btn" href="./modules/00-oversikt.html">Se lärandemål och karta</a>
+        <a class="btn secondary" href="./modules/01-talsystem.html">Börja med Modul 01</a>
+      </div>
+    </div>
+  </section>
+ 
+  <main id="main-content">
+    <div class="container">
+      <section>
+        <h2 class="section-title">Verktyg</h2>
+        <div class="grid cols-3">
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Basomvandlare</h3>
+              <p class="meta">Decimal ↔ Binär ↔ Hex. Tvåkomplement och stegvisa förklaringar.</p>
+            </div>
+            <div class="actions"><a href="./tools/base-converter.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Kodomvandlare</h3>
+              <p class="meta">BCD/NBCD, Excess-3, Gray och alfanumeriska (ASCII).</p>
+            </div>
+            <div class="actions"><a href="./tools/codes-converter.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Binär adderare/subtraherare</h3>
+              <p class="meta">Unsigned vs tvåkomplement. Flaggor Z/N/C/V.</p>
+            </div>
+            <div class="actions"><a href="./tools/binary-adder.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Mul/Div</h3>
+              <p class="meta">Binär multiplikation/division (unsigned/signed), stegvis.</p>
+            </div>
+            <div class="actions"><a href="./tools/binary-mul-div.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Sanningstabell Σm()</h3>
+              <p class="meta">2–4 variabler, minterm-index och SOP.</p>
+            </div>
+            <div class="actions"><a href="./tools/truth-table.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">8‑bitars ALU</h3>
+              <p class="meta">AND/OR/XOR/NOT/ADD/SUB/INC/DEC/SHL/SHR + flaggor.</p>
+            </div>
+            <div class="actions"><a href="./tools/alu-8.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Datapath-simulator</h3>
+              <p class="meta">Fetch–decode–execute, register/ALU-steg.</p>
+            </div>
+            <div class="actions"><a href="./tools/datapath-simulator.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Adressavkodning</h3>
+              <p class="meta">Primärminne, bankning och adressbitar.</p>
+            </div>
+            <div class="actions"><a href="./tools/memory-decoder.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">Bussprotokoll</h3>
+              <p class="meta">Synkron/asynkron – tidsdiagram.</p>
+            </div>
+            <div class="actions"><a href="./tools/bus-protocols.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">MMIO-demo</h3>
+              <p class="meta">Minnesadresserad IO (registeraccess).</p>
+            </div>
+            <div class="actions"><a href="./tools/mmio-sim.html">Öppna</a></div>
+          </article>
+
+          <article class="card feature">
+            <div>
+              <h3 class="mt-0">ISA-simulator</h3>
+              <p class="meta">Mini-CPU, assembler/disassembler.</p>
+            </div>
+            <div class="actions"><a href="./tools/isa-sim.html">Öppna</a></div>
+          </article>
         </div>
-    </header>
+      </section>
 
-    <main class="main">
-        <section id="hem" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h2 class="hero-title">Välkommen till Datorteknik</h2>
-                    <p class="hero-description">
-                        Lär dig grunderna inom datorteknik och programmering. 
-                        Upptäck världen av hårdvara, mjukvara och systemdesign.
-                    </p>
-                    <button class="cta-button">Kom igång</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="kurser" class="courses-section">
-            <div class="container">
-                <h2 class="section-title">Kurser</h2>
-                <div class="grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Grundläggande Datorteknik</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Lär dig grunderna inom datorhårdvara, processorer och minnessystem.</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="button button-outline">Läs mer</button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Programmering</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Utforska olika programmeringsspråk och utvecklingsmetoder.</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="button button-outline">Läs mer</button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Systemdesign</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Lär dig designa och bygga komplexa datasystem.</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="button button-outline">Läs mer</button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Nätverksteknik</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Förstå hur datornätverk fungerar och hur de designas.</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="button button-outline">Läs mer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="resurser" class="resources-section">
-            <div class="container">
-                <h2 class="section-title">Resurser</h2>
-                <div class="grid grid-2-col">
-                    <div class="resource-item">
-                        <h3 class="resource-title">Handböcker</h3>
-                        <p>Detaljerade guider och referensmaterial för djupare studier.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3 class="resource-title">Verktyg</h3>
-                        <p>Programvaror och verktyg som används inom datorteknik.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">&copy; 2024 Datorteknik. Alla rättigheter förbehållna.</p>
+      <section>
+        <h2 class="section-title">Moduler</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3 class="mt-0">Modul 01 – Talsystem, koder och tvåkomplement</h3>
+            <p class="muted">Baser, BCD/NBCD, Excess-3, Gray; 2- och 10-komplement.</p>
+            <a href="./modules/01-talsystem.html">Till modul 01</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 02 – Boolesk algebra och sanningstabeller</h3>
+            <p class="muted">Kombinatoriska och synkrona sekvensnät.</p>
+            <a href="./modules/02-boolean-algebra.html">Till modul 02</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 03 – CPU på blocknivå</h3>
+            <p class="muted">Dataväg, styrenhet, lagrat program.</p>
+            <a href="./modules/03-cpu-arkitektur.html">Till modul 3</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 04 – Aritmetiska nät och ALU</h3>
+            <p class="muted">Adderare, flaggor och ALU-operationer.</p>
+            <a href="./modules/04-aritmetiska-nat.html">Till modul 4</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 05 – Minnen och hierarkier</h3>
+            <p class="muted">SRAM/DRAM/ROM/FLASH och cachehierarki.</p>
+            <a href="./modules/05-minnen.html">Till modul 5</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 06 – Bussar och IO</h3>
+            <p class="muted">Synkrona/asynkrona bussar, multiplex, MMIO.</p>
+            <a href="./modules/06-buss-och-io.html">Till modul 6</a>
+          </article>
+          <article class="card">
+            <h3 class="mt-0">Modul 07 – ISA och assembler</h3>
+            <p class="muted">Instruktionsuppsättning, adressering, undantag.</p>
+            <a href="./modules/07-isa-och-assembly.html">Till modul 7</a>
+          </article>
         </div>
-    </footer>
+      </section>
 
-    <script src="script.js"></script>
+      <section>
+        <h2 class="section-title">Tips</h2>
+        <div class="card">
+          <ul>
+            <li>På startsidan: <code>&lt;link rel="stylesheet" href="./assets/style.css"&gt;</code></li>
+            <li>På undersidor: <code>&lt;link rel="stylesheet" href="../assets/style.css"&gt;</code></li>
+            <li>GitHub Actions publicerar automatiskt ändringar på main.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+ 
+  <footer class="site">
+    <div class="container center">
+      © <span id="y"></span> Datorteknik
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <!-- Lägg till interaktioner från PR #22 -->
+  <script src="./script.js"></script>
 </body>
 </html>

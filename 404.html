@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <title>Omdirigerar …</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <noscript>
+      <!-- Bättre fallback för projekt-Pages: peka till repo-roten -->
+      <meta http-equiv="refresh" content="0; url=/Datorteknik/" />
+    </noscript>
+    <script>
+      (function () {
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        var base = '/' + (segments[0] || '') + '/';
+        var hash = window.location.hash || '';
+        window.location.replace(base + hash);
+      })();
+    </script>
+  </head>
+  <body>Omdirigerar …</body>
+</html>

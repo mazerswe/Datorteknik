@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Modul 04 – Aritmetiska nät och ALU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Modul 04 – Aritmetiska nät och ALU</h1>
+      <nav><a href="../index.html">Hem</a> <a href="../tools/alu-8.html">ALU 8-bit</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Begrepp</h2>
+      <ul>
+        <li>Halv-/heladderare, ripple-carry-adderare.</li>
+        <li>Flaggor: Z (zero), N (negativ), C (carry/borrow), V (overflow).</li>
+        <li>ALU-operationer: bitvisa och aritmetiska.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Övning</h2>
+      <ol>
+        <li>Testa ADD/SUB i ALU:n med olika A,B och observera Z,N,C,V.</li>
+        <li>Vilka A,B ger V=1 vid signed addition?</li>
+        <li>Hur skiljer sig C-flaggan mellan ADD och SUB?</li>
+      </ol>
+      <p><a href="../tools/alu-8.html">Öppna ALU</a></p>
+    </section>
+  </main>
+  <footer><main class="small">© <span id="y"></span> Datorteknik</main></footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
