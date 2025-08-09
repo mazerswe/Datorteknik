@@ -1,0 +1,46 @@
+name: Weekly audits (Lighthouse + link check)
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # varje måndag 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse performance audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Start static server
+        run: |
+          npx -y http-server@14 -p 8080 -c-1 . &
+          echo $! > server.pid
+          sleep 3
+      - name: Run Lighthouse CI
+        run: |
+          npx -y @lhci/cli@0.13.0 autorun \
+            --collect.url=http://localhost:8080/index.html \
+            --collect.numberOfRuns=1 \
+            --upload.target=temporary-public-storage || true
+      - name: Stop server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then kill $(cat server.pid) || true; fi
+
+  link-check:
+    name: Link check weekly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run lychee link checker
+        uses: lycheeverse/lychee-action@v1.10.0
+        with:
+          args: --config .lychee.toml .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
