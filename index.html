@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
   <link rel="stylesheet" href="./assets/style.css?v=20250808">
+  <!-- Lägg till mörkt tema och komponent-styles från PR #22 -->
+  <link rel="stylesheet" href="./styles.css?v=20250808">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
@@ -42,7 +44,7 @@
       </div>
     </div>
   </section>
-
+ 
   <main id="main-content">
     <div class="container">
       <section>
@@ -154,27 +156,27 @@
           <article class="card">
             <h3 class="mt-0">Modul 03 – CPU på blocknivå</h3>
             <p class="muted">Dataväg, styrenhet, lagrat program.</p>
-            <a href="./modules/03-cpu-arkitektur.html">Till modul 03</a>
+            <a href="./modules/03-cpu-arkitektur.html">Till modul 3</a>
           </article>
           <article class="card">
             <h3 class="mt-0">Modul 04 – Aritmetiska nät och ALU</h3>
             <p class="muted">Adderare, flaggor och ALU-operationer.</p>
-            <a href="./modules/04-aritmetiska-nat.html">Till modul 04</a>
+            <a href="./modules/04-aritmetiska-nat.html">Till modul 4</a>
           </article>
           <article class="card">
             <h3 class="mt-0">Modul 05 – Minnen och hierarkier</h3>
             <p class="muted">SRAM/DRAM/ROM/FLASH och cachehierarki.</p>
-            <a href="./modules/05-minnen.html">Till modul 05</a>
+            <a href="./modules/05-minnen.html">Till modul 5</a>
           </article>
           <article class="card">
             <h3 class="mt-0">Modul 06 – Bussar och IO</h3>
             <p class="muted">Synkrona/asynkrona bussar, multiplex, MMIO.</p>
-            <a href="./modules/06-buss-och-io.html">Till modul 06</a>
+            <a href="./modules/06-buss-och-io.html">Till modul 6</a>
           </article>
           <article class="card">
             <h3 class="mt-0">Modul 07 – ISA och assembler</h3>
             <p class="muted">Instruktionsuppsättning, adressering, undantag.</p>
-            <a href="./modules/07-isa-och-assembly.html">Till modul 07</a>
+            <a href="./modules/07-isa-och-assembly.html">Till modul 7</a>
           </article>
         </div>
       </section>
@@ -191,12 +193,14 @@
       </section>
     </div>
   </main>
-
+ 
   <footer class="site">
     <div class="container center">
       © <span id="y"></span> Datorteknik
     </div>
   </footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <!-- Lägg till interaktioner från PR #22 -->
+  <script src="./script.js"></script>
 </body>
 </html>
