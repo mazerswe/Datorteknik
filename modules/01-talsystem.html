@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lär dig talsystem, tvåkomplement och kodningsscheman som BCD, Excess-3 och Gray kod med interaktiva övningar och quiz." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
+  <title>Modul 01 – Talsystem och koder</title>
+  <link rel="stylesheet" href="../assets/style.css?v=20250808">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+  
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="../index.html">Hem</a>
+        <a href="./00-oversikt.html">Översikt</a>
+        <a href="./01-talsystem.html" aria-current="page">Modul 01</a>
+        <a href="./02-boolean-algebra.html">Modul 02</a>
+        <a href="./03-cpu-arkitektur.html">Modul 03</a>
+        <a href="./04-aritmetiska-nat.html">Modul 04</a>
+        <a href="./05-minnen.html">Modul 05</a>
+        <a href="./06-buss-och-io.html">Modul 06</a>
+        <a href="./07-isa-och-assembly.html">Modul 07</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="card">
+        <h1 class="mt-0">Modul 01 – Talsystem och koder</h1>
+        <p class="lead">Grunden för all digital teknik: hur datorer representerar och manipulerar tal och information.</p>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Lärandemål</h2>
+        <p>Efter denna modul ska du kunna:</p>
+        <ul>
+          <li>Konvertera mellan decimal, binär och hexadecimal bas</li>
+          <li>Förstå och använda tvåkomplement för signed heltal</li>
+          <li>Koda och avkoda BCD, NBCD, Excess-3 och Gray kod</li>
+          <li>Identifiera talområden för olika bitbredder</li>
+          <li>Förstå overflow och underflow i tvåkomplement</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Teori</h2>
+        
+        <h3>Positionella talsystem</h3>
+        <p>Ett positionellt talsystem använder platsens värde för att bestämma talets storlek. Värdet av en siffra beror på dess position i talet.</p>
+        
+        <div class="figure-container">
+          <figure>
+            <img src="../assets/figures/place-value-chart.svg" alt="Platsvärdeschart för binära och hexadecimala tal" style="max-width: 100%; height: auto;">
+            <figcaption>Platsvärdeschart visar hur positioner motsvarar olika potenser av basen</figcaption>
+          </figure>
+        </div>
+
+        <h4>Decimal (bas 10)</h4>
+        <p>Vi är vana vid decimal där varje position representerar en tiopotens:</p>
+        <code>123₁₀ = 1×10² + 2×10¹ + 3×10⁰ = 100 + 20 + 3 = 123</code>
+
+        <h4>Binär (bas 2)</h4>
+        <p>I binär använder vi endast siffrorna 0 och 1, där varje position representerar en tvåpotens:</p>
+        <code>1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11₁₀</code>
+
+        <h4>Hexadecimal (bas 16)</h4>
+        <p>Hexadecimal använder siffrorna 0-9 och bokstäverna A-F (10-15):</p>
+        <code>1A3₁₆ = 1×16² + 10×16¹ + 3×16⁰ = 256 + 160 + 3 = 419₁₀</code>
+
+        <h3>Tvåkomplement</h3>
+        <p>Tvåkomplement är det vanligaste sättet att representera negativa heltal i datorer. Det ger en unik representation av noll och gör att addition och subtraktion kan implementeras med samma hårdvara.</p>
+
+        <div class="figure-container">
+          <figure>
+            <img src="../assets/figures/twos-complement-timeline.svg" alt="Tvåkomplement talområde för 4-bitars tal" style="max-width: 100%; height: auto;">
+            <figcaption>Tvåkomplement talområde visar hur MSB fungerar som teckenbitt</figcaption>
+          </figure>
+        </div>
+
+        <h4>Egenskaper</h4>
+        <ul>
+          <li><strong>Talområde:</strong> För n bitar: [-2ⁿ⁻¹, 2ⁿ⁻¹-1]</li>
+          <li><strong>MSB som teckenbitt:</strong> 0 = positivt, 1 = negativt</li>
+          <li><strong>Negation:</strong> ~x + 1 (invertera alla bitar, addera 1)</li>
+          <li><strong>Endast en nollrepresentation:</strong> 00...0</li>
+        </ul>
+
+        <h4>Exempel: 8-bitars tvåkomplement</h4>
+        <ul>
+          <li>Talområde: -128 till +127</li>
+          <li>+42 = 00101010</li>
+          <li>-42 = ~00101010 + 1 = 11010101 + 1 = 11010110</li>
+        </ul>
+
+        <h3>Kodningsscheman</h3>
+
+        <h4>BCD (Binary Coded Decimal)</h4>
+        <p>BCD kodar varje decimalsiffra separat med 4 bitar (0000-1001):</p>
+        <ul>
+          <li>Decimal 95 → BCD: 1001 0101</li>
+          <li>Enkelt att konvertera till/från decimal</li>
+          <li>Ineffektivt (10 av 16 möjliga 4-bitars kombinationer används)</li>
+        </ul>
+
+        <h4>Excess-3 (XS-3)</h4>
+        <p>Excess-3 adderar 3 till varje decimalsiffra innan BCD-kodning:</p>
+        <ul>
+          <li>Decimal 95 → XS-3: (9+3)(5+3) → 12,8 → 1100 1000</li>
+          <li>Självkomplementerande egenskaper</li>
+          <li>Användes i tidiga datorer</li>
+        </ul>
+
+        <h4>Gray kod</h4>
+        <p>Gray kod (reflekterad binär kod) ändrar endast en bit mellan konsekutiva tal:</p>
+
+        <div class="figure-container">
+          <figure>
+            <img src="../assets/figures/gray-code-ring.svg" alt="Gray Code Transition Ring för 3-bitars tal" style="max-width: 100%; height: auto;">
+            <figcaption>Gray Code Ring visar hur endast en bit ändras mellan konsekutiva värden</figcaption>
+          </figure>
+        </div>
+
+        <ul>
+          <li>Minskar fel vid signalavläsning</li>
+          <li>Används i roterande sensorer och enkodrar</li>
+          <li>Konvertering: MSB kopieras, övriga bitar = XOR med föregående bit</li>
+        </ul>
+
+        <h3>Overflow och Underflow</h3>
+        <p>Overflow uppstår när resultatet av en operation överstiger det representerbara området:</p>
+        <ul>
+          <li><strong>Signed overflow:</strong> +127 + 1 = -128 (i 8-bitars tvåkomplement)</li>
+          <li><strong>Unsigned overflow:</strong> 255 + 1 = 0 (i 8-bitars unsigned)</li>
+          <li><strong>Detektering:</strong> Carry-flaggor och teckenkontroll</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Praktiska övningar</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3 class="mt-0">Basomvandlare</h3>
+            <p class="muted">Öva konvertering mellan decimal, binär och hexadecimal.</p>
+            <a href="../tools/base-converter.html" class="btn">Öppna verktyg</a>
+          </article>
+          
+          <article class="card">
+            <h3 class="mt-0">Kodomvandlare</h3>
+            <p class="muted">Utforska BCD, NBCD, Excess-3, Gray och ASCII-kodning.</p>
+            <a href="../tools/codes-converter.html" class="btn">Öppna verktyg</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Quiz</h2>
+        <p>Testa dina kunskaper med interaktiva frågor om talsystem och koder.</p>
+        <div id="quiz-container" class="quiz-placeholder">
+          <button type="button" class="btn" id="load-quiz-btn">Starta quiz</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Sammanfattning</h2>
+        <ul>
+          <li><strong>Positionella talsystem:</strong> Binär (bas 2), decimal (bas 10), hexadecimal (bas 16)</li>
+          <li><strong>Tvåkomplement:</strong> Standard för signed heltal, MSB som teckenbitt</li>
+          <li><strong>BCD:</strong> 4 bitar per decimalsiffra, enkel konvertering</li>
+          <li><strong>Excess-3:</strong> BCD + 3, självkomplementerande</li>
+          <li><strong>Gray kod:</strong> En bit ändras per steg, minskar fel</li>
+          <li><strong>Overflow:</strong> Resultat utanför representerbara området</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="container center">
+      © <span id="year"></span> Datorteknik
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Lazy load quiz on interaction
+    document.getElementById('load-quiz-btn').addEventListener('click', async function() {
+      const button = this;
+      const container = document.getElementById('quiz-container');
+      
+      button.textContent = 'Laddar quiz...';
+      button.disabled = true;
+      
+      try {
+        // Dynamically load quiz.js
+        if (!window.Quiz) {
+          const script = document.createElement('script');
+          script.src = '../assets/js/quiz.js';
+          script.async = true;
+          document.head.appendChild(script);
+          
+          // Wait for script to load
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+          });
+        }
+        
+        // Load and render quiz
+        await Quiz.load('#quiz-container', '../assets/quizzes/module01.json');
+        
+      } catch (error) {
+        console.error('Failed to load quiz:', error);
+        container.innerHTML = '<div class="error" role="alert">Kunde inte ladda quiz. Kontrollera att JavaScript är aktiverat och försök igen.</div>';
+      }
+    });
+  </script>
+</body>
+</html>

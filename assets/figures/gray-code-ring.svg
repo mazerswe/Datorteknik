@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" aria-labelledby="gray-code-title" role="img">
+  <title id="gray-code-title">Gray Code Transition Ring för 3-bitars tal</title>
+  
+  <!-- Background -->
+  <rect width="500" height="500" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Header -->
+  <text x="250" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#212529">
+    Gray Code Ring (3 bitar)
+  </text>
+  
+  <!-- Center point -->
+  <circle cx="250" cy="250" r="3" fill="#495057"/>
+  
+  <!-- Circle definitions -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6c757d"/>
+    </marker>
+  </defs>
+  
+  <!-- Outer circle -->
+  <circle cx="250" cy="250" r="180" fill="none" stroke="#e9ecef" stroke-width="2"/>
+  
+  <!-- Inner labels circle -->
+  <circle cx="250" cy="250" r="130" fill="none" stroke="#f8f9fa" stroke-width="1"/>
+  
+  <!-- Gray code positions (8 positions around circle) -->
+  <!-- Position calculations: angle = i * 45° for i = 0 to 7 -->
+  
+  <!-- 000 at top (0°) -->
+  <g transform="translate(250, 70)">
+    <circle r="25" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#1976d2">000</text>
+    <text text-anchor="middle" dy="-35" font-family="Arial, sans-serif" font-size="12" fill="#495057">0</text>
+  </g>
+  
+  <!-- 001 at 45° -->
+  <g transform="translate(377, 123)">
+    <circle r="25" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#7b1fa2">001</text>
+    <text text-anchor="middle" dx="35" dy="5" font-family="Arial, sans-serif" font-size="12" fill="#495057">1</text>
+  </g>
+  
+  <!-- 011 at 90° (right) -->
+  <g transform="translate(430, 250)">
+    <circle r="25" fill="#e8f5e8" stroke="#388e3c" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#388e3c">011</text>
+    <text text-anchor="middle" dx="35" dy="5" font-family="Arial, sans-serif" font-size="12" fill="#495057">2</text>
+  </g>
+  
+  <!-- 010 at 135° -->
+  <g transform="translate(377, 377)">
+    <circle r="25" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#f57c00">010</text>
+    <text text-anchor="middle" dx="35" dy="15" font-family="Arial, sans-serif" font-size="12" fill="#495057">3</text>
+  </g>
+  
+  <!-- 110 at 180° (bottom) -->
+  <g transform="translate(250, 430)">
+    <circle r="25" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#d32f2f">110</text>
+    <text text-anchor="middle" dy="45" font-family="Arial, sans-serif" font-size="12" fill="#495057">4</text>
+  </g>
+  
+  <!-- 111 at 225° -->
+  <g transform="translate(123, 377)">
+    <circle r="25" fill="#f1f8e9" stroke="#689f38" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#689f38">111</text>
+    <text text-anchor="middle" dx="-35" dy="15" font-family="Arial, sans-serif" font-size="12" fill="#495057">5</text>
+  </g>
+  
+  <!-- 101 at 270° (left) -->
+  <g transform="translate(70, 250)">
+    <circle r="25" fill="#fce4ec" stroke="#c2185b" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#c2185b">101</text>
+    <text text-anchor="middle" dx="-35" dy="5" font-family="Arial, sans-serif" font-size="12" fill="#495057">6</text>
+  </g>
+  
+  <!-- 100 at 315° -->
+  <g transform="translate(123, 123)">
+    <circle r="25" fill="#e0f2f1" stroke="#00796b" stroke-width="2"/>
+    <text text-anchor="middle" dy="5" font-family="monospace" font-size="14" font-weight="bold" fill="#00796b">100</text>
+    <text text-anchor="middle" dx="-35" dy="-15" font-family="Arial, sans-serif" font-size="12" fill="#495057">7</text>
+  </g>
+  
+  <!-- Transition arrows showing Gray code sequence -->
+  <g fill="none" stroke="#6c757d" stroke-width="2" marker-end="url(#arrow)">
+    <!-- 0→1: 000→001 -->
+    <path d="M 275,85 Q 320,100 362,138" stroke="#1976d2"/>
+    
+    <!-- 1→2: 001→011 -->
+    <path d="M 392,148 Q 415,190 415,225" stroke="#7b1fa2"/>
+    
+    <!-- 2→3: 011→010 -->
+    <path d="M 415,275 Q 400,320 362,362" stroke="#388e3c"/>
+    
+    <!-- 3→4: 010→110 -->
+    <path d="M 362,392 Q 320,415 275,415" stroke="#f57c00"/>
+    
+    <!-- 4→5: 110→111 -->
+    <path d="M 225,415 Q 180,400 138,362" stroke="#d32f2f"/>
+    
+    <!-- 5→6: 111→101 -->
+    <path d="M 108,362 Q 85,320 85,275" stroke="#689f38"/>
+    
+    <!-- 6→7: 101→100 -->
+    <path d="M 85,225 Q 100,180 138,138" stroke="#c2185b"/>
+    
+    <!-- 7→0: 100→000 -->
+    <path d="M 138,108 Q 180,85 225,85" stroke="#00796b"/>
+  </g>
+  
+  <!-- Bit change indicators -->
+  <g font-family="Arial, sans-serif" font-size="10" fill="#dc3545" font-weight="bold">
+    <text x="340" y="120" text-anchor="middle">bit 0</text>
+    <text x="425" y="190" text-anchor="middle">bit 1</text>
+    <text x="400" y="340" text-anchor="middle">bit 1</text>
+    <text x="320" y="405" text-anchor="middle">bit 0</text>
+    <text x="160" y="405" text-anchor="middle">bit 2</text>
+    <text x="75" y="340" text-anchor="middle">bit 1</text>
+    <text x="100" y="190" text-anchor="middle">bit 1</text>
+    <text x="160" y="100" text-anchor="middle">bit 2</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="20" y="350" width="200" height="130" fill="#ffffff" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="30" y="370" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#212529">
+    Gray Code egenskaper:
+  </text>
+  <text x="30" y="390" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    • Endast 1 bit ändras per steg
+  </text>
+  <text x="30" y="405" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    • Cyklisk: sista → första = 1 bit
+  </text>
+  <text x="30" y="420" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    • Minskar fel vid rotering
+  </text>
+  <text x="30" y="435" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    • Används i sensorer/enkodrar
+  </text>
+  <text x="30" y="450" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    • Kallas även "reflected code"
+  </text>
+  <text x="30" y="470" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    Dec → Gray: XOR med shift
+  </text>
+  
+  <!-- Conversion example -->
+  <rect x="280" y="350" width="200" height="130" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="290" y="370" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#212529">
+    Konvertering Binary→Gray:
+  </text>
+  <text x="290" y="390" font-family="monospace" font-size="11" fill="#495057">
+    Binary: 101 (5₁₀)
+  </text>
+  <text x="290" y="405" font-family="monospace" font-size="11" fill="#495057">
+    MSB:    1   (kopieras)
+  </text>
+  <text x="290" y="420" font-family="monospace" font-size="11" fill="#495057">
+    XOR:    1⊕0 = 1
+  </text>
+  <text x="290" y="435" font-family="monospace" font-size="11" fill="#495057">
+    XOR:    0⊕1 = 1
+  </text>
+  <text x="290" y="450" font-family="monospace" font-size="11" fill="#495057">
+    Gray:   111
+  </text>
+  <text x="290" y="470" font-family="Arial, sans-serif" font-size="11" fill="#6c757d">
+    (motsvarar decimal 5 i Gray)
+  </text>
+</svg>

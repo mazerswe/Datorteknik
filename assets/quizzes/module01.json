@@ -1,0 +1,232 @@
+{
+  "title": "Modul 01 Quiz - Talsystem och koder",
+  "description": "Quiz om talsystem, tvåkomplement och olika kodningsscheman",
+  "options": {
+    "showScore": true,
+    "allowReview": true,
+    "allowRetry": true,
+    "saveState": true
+  },
+  "questions": [
+    {
+      "type": "mcq",
+      "text": "Vad är decimala talet 27 i binär form?",
+      "description": "Konvertera från bas 10 till bas 2",
+      "correct": 2,
+      "options": [
+        {
+          "text": "10111",
+          "explanation": "Detta är 23 i decimal (16+4+2+1). Rätt svar är 11011."
+        },
+        {
+          "text": "11001", 
+          "explanation": "Detta är 25 i decimal (16+8+1). Rätt svar är 11011."
+        },
+        {
+          "text": "11011",
+          "explanation": "Rätt! 27 = 16+8+2+1 = 2⁴+2³+2¹+2⁰ = 11011₂"
+        },
+        {
+          "text": "11101",
+          "explanation": "Detta är 29 i decimal (16+8+4+1). Rätt svar är 11011."
+        }
+      ]
+    },
+    {
+      "type": "numeric",
+      "text": "Vad är hexadecimala talet 0x2F i decimal?",
+      "description": "Konvertera från bas 16 till bas 10",
+      "correct": 47,
+      "tolerance": 0,
+      "hint": "0x2F = 2×16¹ + F×16⁰, där F = 15",
+      "explanation": "0x2F = 2×16 + 15×1 = 32 + 15 = 47"
+    },
+    {
+      "type": "mcq",
+      "text": "Vilket tal representeras av det 8-bitars tvåkomplementet 11010110?",
+      "description": "Tolka som signed 8-bitars tal",
+      "correct": 1,
+      "options": [
+        {
+          "text": "214",
+          "explanation": "Detta är värdet som unsigned. För signed tolkning med tvåkomplement blir det negativt."
+        },
+        {
+          "text": "-42",
+          "explanation": "Rätt! MSB=1 betyder negativt tal. Tvåkomplement: ~11010110 + 1 = 00101001 + 1 = 00101010 = 42, så talet är -42."
+        },
+        {
+          "text": "-86",
+          "explanation": "Detta är fel beräkning. Rätt svar är -42."
+        },
+        {
+          "text": "-54",
+          "explanation": "Detta är fel beräkning. Rätt svar är -42."
+        }
+      ]
+    },
+    {
+      "type": "multi",
+      "text": "Vilka av följande påståenden om tvåkomplement är korrekta?",
+      "description": "Välj alla korrekta påståenden",
+      "correct": [0, 2, 3],
+      "options": [
+        {
+          "text": "För n bitar är området [-2ⁿ⁻¹, 2ⁿ⁻¹-1]",
+          "explanation": "Rätt! Detta är det korrekta området för signed tal med tvåkomplement."
+        },
+        {
+          "text": "Noll har två representationer",
+          "explanation": "Fel! Tvåkomplement har endast en representation av noll (alla nollor)."
+        },
+        {
+          "text": "MSB (most significant bit) anger tecken",
+          "explanation": "Rätt! MSB=0 för positiva tal, MSB=1 för negativa tal."
+        },
+        {
+          "text": "Addition fungerar samma som för unsigned tal",
+          "explanation": "Rätt! Hårdvaran behöver inte veta om talen är signed eller unsigned vid addition."
+        }
+      ]
+    },
+    {
+      "type": "mcq",
+      "text": "Vad är decimal 8 i BCD (Binary Coded Decimal)?",
+      "description": "Koda varje decimalsiffra separat med 4 bitar",
+      "correct": 3,
+      "options": [
+        {
+          "text": "1000",
+          "explanation": "Detta är 8 i ren binär, inte BCD. I BCD används alltid 4 bitar per decimalsiffra."
+        },
+        {
+          "text": "1001",
+          "explanation": "Detta representerar 9 i BCD, inte 8."
+        },
+        {
+          "text": "0111",
+          "explanation": "Detta representerar 7 i BCD, inte 8."
+        },
+        {
+          "text": "00001000",
+          "explanation": "Rätt! BCD för 8 är 0000 1000 (0 och 8 med 4 bitar vardera). Men eftersom vi bara har en siffra behövs bara 1000."
+        }
+      ]
+    },
+    {
+      "type": "mcq",
+      "text": "Vilket är decimal 23 i Excess-3 kod?",
+      "description": "Excess-3 adderar 3 till varje decimalsiffra innan BCD-kodning",
+      "correct": 1,
+      "options": [
+        {
+          "text": "00100011",
+          "explanation": "Detta är ren BCD för 23, inte Excess-3."
+        },
+        {
+          "text": "01010110",
+          "explanation": "Rätt! 23 → 2+3=5, 3+3=6 → BCD(5)=0101, BCD(6)=0110 → 01010110"
+        },
+        {
+          "text": "00100110",
+          "explanation": "Detta blandar BCD och Excess-3. Båda siffrorna ska ha 3 adderat."
+        },
+        {
+          "text": "01011001",
+          "explanation": "Detta är fel beräkning av Excess-3."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "text": "Gray-kod minimerar antalet bitförändringar mellan konsekutiva tal.",
+      "description": "Följ sekvensen: 000, 001, 011, 010, 110, 111, 101, ?",
+      "step_content": "Gray-kod för 0-7: 000, 001, 011, 010, 110, 111, 101, ?",
+      "step_prompt": "Vad är Gray-kod för decimal 7?",
+      "correct": ["100"],
+      "placeholder": "Ange 3-bitars Gray-kod",
+      "explanation": "Gray-kod för 7 är 100. Sekvensen fortsätter med endast en bitförändring från 101 → 100."
+    },
+    {
+      "type": "numeric", 
+      "text": "Vad är det största unsigned 6-bitars talet i decimal?",
+      "description": "För n bitar är området för unsigned tal [0, 2ⁿ-1]",
+      "correct": 63,
+      "tolerance": 0,
+      "hint": "För 6 bitar: 2⁶ - 1",
+      "explanation": "2⁶ - 1 = 64 - 1 = 63. I binär: 111111"
+    },
+    {
+      "type": "mcq",
+      "text": "Vad händer vid overflow när man adderar 01111111 + 00000001 som 8-bitars signed tal?",
+      "description": "Båda talen tolkas som tvåkomplement",
+      "correct": 2,
+      "options": [
+        {
+          "text": "Resultatet blir 128",
+          "explanation": "128 är korrekt som unsigned, men detta överstiger området för 8-bitars signed tal."
+        },
+        {
+          "text": "Resultatet blir 0",
+          "explanation": "Fel beräkning. 01111111 + 00000001 = 10000000."
+        },
+        {
+          "text": "Resultatet blir -128 (overflow)",
+          "explanation": "Rätt! 01111111 (127) + 00000001 (1) = 10000000 (-128). Detta är overflow eftersom 127+1 borde bli 128, men det finns inte i 8-bitars signed."
+        },
+        {
+          "text": "Resultatet blir 256",
+          "explanation": "Detta skulle kräva 9 bitar. Med 8 bitar får vi 10000000 = -128."
+        }
+      ]
+    },
+    {
+      "type": "multi",
+      "text": "Vilka koder använder 4 bitar per decimalsiffra?",
+      "description": "Välj alla som gäller",
+      "correct": [0, 1],
+      "options": [
+        {
+          "text": "BCD (Binary Coded Decimal)",
+          "explanation": "Rätt! BCD använder 4 bitar för att representera varje decimalsiffra 0-9."
+        },
+        {
+          "text": "Excess-3",
+          "explanation": "Rätt! Excess-3 är BCD + 3, så den använder också 4 bitar per decimalsiffra."
+        },
+        {
+          "text": "Gray-kod",
+          "explanation": "Fel! Gray-kod är inte kopplad till decimalsiffror utan är en allmän binär kodning."
+        },
+        {
+          "text": "ASCII",
+          "explanation": "Fel! ASCII använder 7-8 bitar för tecken, inklusive siffror, men följer inte 4-bitars decimalsiffror."
+        }
+      ]
+    },
+    {
+      "type": "mcq",
+      "text": "Vad är fördelen med Gray-kod jämfört med binär kod?",
+      "description": "Tänk på vad som händer vid överföring och sensorer",
+      "correct": 1,
+      "options": [
+        {
+          "text": "Den är mer kompakt",
+          "explanation": "Fel! Gray-kod använder samma antal bitar som binär kod."
+        },
+        {
+          "text": "Endast en bit ändras mellan konsekutiva värden",
+          "explanation": "Rätt! Detta minskar risk för fel vid överföring och gör den lämplig för roterande sensorer."
+        },
+        {
+          "text": "Den kan representera större tal",
+          "explanation": "Fel! Gray-kod och binär kod kan representera samma talområde med samma antal bitar."
+        },
+        {
+          "text": "Den är enklare att konvertera till decimal",
+          "explanation": "Fel! Binär kod är enklare att konvertera till decimal än Gray-kod."
+        }
+      ]
+    }
+  ]
+}
