@@ -1,0 +1,24 @@
+# Lychee link checker configuration
+# Dokumentation: https://github.com/lycheeverse/lychee
+# Kör mot både HTML och Markdown i repo:t (se actions).
+# Vanliga protokoll och mönster som vi ignorerar:
+exclude = [
+  "mailto:*",
+  "tel:*",
+  "data:*",
+  "javascript:*"
+]
+
+# Ignorera vissa domäner eller temporära rate-limiters här om det behövs:
+# exclude = ["https://example.com/rate-limited"]
+
+# Timeout och retries
+timeout = 20
+max_retries = 2
+
+# Cache för snabbare körningar
+cache = true
+max_cache_age = "1d"
+
+# Upptäck döda ankarlänkar inom sidan
+include_fragment = true
