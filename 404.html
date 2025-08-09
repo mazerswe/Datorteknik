@@ -1,21 +1,45 @@
 <!doctype html>
 <html lang="sv">
-  <head>
-    <meta charset="utf-8" />
-    <title>Omdirigerar …</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <noscript>
-      <!-- Bättre fallback för projekt-Pages: peka till repo-roten -->
-      <meta http-equiv="refresh" content="0; url=/Datorteknik/" />
-    </noscript>
-    <script>
-      (function () {
-        var segments = window.location.pathname.split('/').filter(Boolean);
-        var base = '/' + (segments[0] || '') + '/';
-        var hash = window.location.hash || '';
-        window.location.replace(base + hash);
-      })();
-    </script>
-  </head>
-  <body>Omdirigerar …</body>
+<head>
+  <meta charset="utf-8" />
+  <title>Sidan kunde inte hittas – Datorteknik</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./theme-compat.css">
+</head>
+<body>
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="./index.html">Hem</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="hero">
+        <div class="container">
+          <h1>Hoppsan! 404</h1>
+          <p class="lead">Sidan du söker finns inte eller har flyttats.</p>
+          <div class="cta">
+            <a class="btn" href="./index.html">Till startsidan</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="container center">
+      © <span id="y"></span> Datorteknik
+    </div>
+  </footer>
+  <script src="./script.js"></script>
+</body>
 </html>
