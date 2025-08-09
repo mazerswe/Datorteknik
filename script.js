@@ -75,4 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('mousedown', () => {
     document.body.classList.remove('keyboard-nav');
   });
+
+  // 6) Footer year if #y exists
+  const y = document.getElementById('y');
+  if (y) y.textContent = new Date().getFullYear();
 });
