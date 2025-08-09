@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Datapath-simulator – CPU-dataväg med micro-operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interaktiv simulator för CPU-dataväg med definerbara mikro-operationer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <link rel="stylesheet" href="../assets/style.css?v=20250808">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+  
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="../index.html">Hem</a>
+        <a href="../modules/00-oversikt.html">Översikt</a>
+        <a href="../modules/03-cpu-arkitektur.html">Modul 03</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="card">
+        <h1 class="mt-0">Datapath-simulator</h1>
+        <p class="lead">Utforska CPU:ns dataväg genom interaktiva mikro-operationer. Definiera egna styrsekvenser och se hur data flödar genom processorn.</p>
+        
+        <div class="callout info">
+          <strong>Instruktioner:</strong>
+          <ul>
+            <li>Välj en fördefinierad sekvens eller skapa egen med mikro-operationer</li>
+            <li>Använd "Step" för att köra en operation i taget, eller "Run" för automatisk körning</li>
+            <li>Justera klockfrekvensen med reglaget</li>
+            <li>Övervaka registerinnehåll och execution trace i realtid</li>
+            <li>Använd Import/Export för att spara och dela konfigurationer</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <div id="datapath-simulator"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Mikro-operationer</h2>
+        
+        <h3>Grundläggande operationer</h3>
+        <div class="grid cols-2">
+          <div>
+            <h4>Minnesoperationer</h4>
+            <ul class="mono small">
+              <li><code>MAR ← PC</code> - Ladda minnesadress från PC</li>
+              <li><code>MDR ← Mem[MAR]</code> - Läs från minne</li>
+              <li><code>Mem[MAR] ← MDR</code> - Skriv till minne</li>
+              <li><code>IR ← MDR</code> - Ladda instruktionsregister</li>
+            </ul>
+          </div>
+          <div>
+            <h4>ALU-operationer</h4>
+            <ul class="mono small">
+              <li><code>A ← R[n]</code> - Ladda ALU-ingång A</li>
+              <li><code>B ← R[n]</code> - Ladda ALU-ingång B</li>
+              <li><code>ALU ← A + B</code> - Addition</li>
+              <li><code>ALU ← A - B</code> - Subtraktion</li>
+              <li><code>ALU ← A & B</code> - Logisk AND</li>
+              <li><code>R[n] ← ALU</code> - Spara ALU-resultat</li>
+              <li><code>FLAGS ← ALU.flags</code> - Uppdatera flaggor</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Fördefinierade sekvenser</h3>
+        <div class="grid cols-3">
+          <div class="preset-card">
+            <h4>Fetch-Decode-Execute</h4>
+            <p class="small">Grundläggande instruktionshämtning:</p>
+            <ol class="mono small">
+              <li>MAR ← PC</li>
+              <li>MDR ← Mem[MAR]</li>
+              <li>IR ← MDR</li>
+              <li>PC ← PC + 1</li>
+            </ol>
+          </div>
+          
+          <div class="preset-card">
+            <h4>Load/Store</h4>
+            <p class="small">Minnesoperationer:</p>
+            <ol class="mono small">
+              <li>MAR ← R[1]</li>
+              <li>MDR ← Mem[MAR]</li>
+              <li>R[0] ← MDR</li>
+              <li>MAR ← R[2]</li>
+              <li>MDR ← R[0]</li>
+              <li>Mem[MAR] ← MDR</li>
+            </ol>
+          </div>
+          
+          <div class="preset-card">
+            <h4>ALU Operations</h4>
+            <p class="small">Aritmetiska operationer:</p>
+            <ol class="mono small">
+              <li>A ← R[0]</li>
+              <li>B ← R[1]</li>
+              <li>ALU ← A + B</li>
+              <li>R[2] ← ALU</li>
+              <li>FLAGS ← ALU.flags</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Fördjupning</h2>
+        
+        <h3>Datavägens komponenter</h3>
+        <dl>
+          <dt><strong>PC (Program Counter)</strong></dt>
+          <dd>Innehåller adressen till nästa instruktion som ska hämtas.</dd>
+          
+          <dt><strong>IR (Instruction Register)</strong></dt>
+          <dd>Innehåller den aktuella instruktionen som ska utföras.</dd>
+          
+          <dt><strong>MAR (Memory Address Register)</strong></dt>
+          <dd>Innehåller minnesadressen för läs- eller skrivoperationer.</dd>
+          
+          <dt><strong>MDR (Memory Data Register)</strong></dt>
+          <dd>Innehåller data som läses från eller skrivs till minnet.</dd>
+          
+          <dt><strong>Register File</strong></dt>
+          <dd>Samling av allmänna register (R[0] till R[7]) för datalagring.</dd>
+          
+          <dt><strong>ALU (Arithmetic Logic Unit)</strong></dt>
+          <dd>Utför aritmetiska och logiska operationer på data.</dd>
+          
+          <dt><strong>FLAGS</strong></dt>
+          <dd>Statusflaggor (Z=Zero, N=Negative, C=Carry, V=Overflow) från ALU-operationer.</dd>
+        </dl>
+
+        <h3>Micro-operations och styrsekvenser</h3>
+        <p>Varje komplex instruktion bryts ner i enkla mikro-operationer som kan utföras av hårdvaran. Styrenhet genererar dessa sekvenser baserat på instruktionstyp.</p>
+        
+        <div class="callout example">
+          <strong>Exempel - Load-instruktion:</strong><br>
+          För att ladda data från minne till register krävs flera mikro-operationer:
+          <ol>
+            <li>Sätt minnesadress (MAR ← adress)</li>
+            <li>Läs från minne (MDR ← Mem[MAR])</li>
+            <li>Överför till register (R[x] ← MDR)</li>
+          </ol>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="container center">
+      © <span id="year"></span> Datorteknik
+    </div>
+  </footer>
+
+  <script src="../assets/js/datapath-sim.js"></script>
+  <script>
+    // Initialize datapath simulator
+    document.addEventListener('DOMContentLoaded', function() {
+      datapathSim = new DatapathSimulator('#datapath-simulator', {
+        clockSpeed: 1500,
+        maxMemory: 256,
+        registerCount: 8
+      });
+      
+      // Set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--accent);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1000;
+    }
+    
+    .skip-link:focus {
+      top: 6px;
+    }
+    
+    /* Datapath Simulator Styles */
+    .datapath-simulator {
+      min-height: 600px;
+    }
+    
+    .simulator-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s-4);
+      flex-wrap: wrap;
+      gap: var(--s-3);
+    }
+    
+    .simulator-controls {
+      display: flex;
+      gap: var(--s-4);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      flex-wrap: wrap;
+    }
+    
+    .control-group label {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .simulator-content {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--s-4);
+    }
+    
+    @media (max-width: 1200px) {
+      .simulator-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .datapath-diagram {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-3);
+      overflow-x: auto;
+    }
+    
+    .datapath-svg {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .simulator-panels {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+    
+    .panel {
+      background: var(--elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-3);
+    }
+    
+    .panel h4 {
+      margin: 0 0 var(--s-3);
+      font-size: 1rem;
+    }
+    
+    /* SVG Component Styles */
+    .component {
+      transition: all 0.3s ease;
+    }
+    
+    .component.active {
+      fill: color-mix(in oklab, var(--accent) 30%, var(--surface)) !important;
+      stroke: var(--accent) !important;
+      stroke-width: 3 !important;
+    }
+    
+    .component.source {
+      fill: color-mix(in oklab, var(--accent-2) 30%, var(--surface)) !important;
+      stroke: var(--accent-2) !important;
+      stroke-width: 3 !important;
+    }
+    
+    .component.destination {
+      fill: color-mix(in oklab, #f59e0b 30%, var(--surface)) !important;
+      stroke: #f59e0b !important;
+      stroke-width: 3 !important;
+    }
+    
+    .component-label, .register-label, .bus-label, .flag-label {
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      fill: var(--fg);
+    }
+    
+    .register-value {
+      font-family: ui-monospace, monospace;
+      font-size: 10px;
+      fill: var(--muted);
+    }
+    
+    /* Micro-ops Editor */
+    .micro-ops-editor {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+    
+    .current-program h5 {
+      margin: 0 0 var(--s-2);
+    }
+    
+    .micro-ops-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) / 2);
+    }
+    
+    .micro-op {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-2);
+      border-bottom: 1px solid var(--line);
+      font-family: ui-monospace, monospace;
+      font-size: 0.9rem;
+    }
+    
+    .micro-op:last-child {
+      border-bottom: none;
+    }
+    
+    .micro-op.current {
+      background: color-mix(in oklab, var(--accent) 10%, var(--surface));
+      border-color: var(--accent);
+    }
+    
+    .micro-op.executed {
+      opacity: 0.6;
+      background: color-mix(in oklab, var(--accent-2) 5%, var(--surface));
+    }
+    
+    .step-number {
+      min-width: 20px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    
+    .current-indicator {
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    .editor-controls {
+      border-top: 1px solid var(--line);
+      padding-top: var(--s-3);
+    }
+    
+    .editor-controls h5 {
+      margin: 0 0 var(--s-2);
+    }
+    
+    .editor-controls select,
+    .editor-controls input {
+      width: 100%;
+      margin-bottom: var(--s-2);
+      padding: var(--s-2);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) / 2);
+      background: var(--bg);
+      color: var(--fg);
+    }
+    
+    /* State Display */
+    .state-display {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .state-section {
+      margin-bottom: var(--s-4);
+    }
+    
+    .state-section h5 {
+      margin: 0 0 var(--s-2);
+      font-size: 0.9rem;
+    }
+    
+    .register-grid,
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--s-2);
+    }
+    
+    .register-item,
+    .memory-item {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+    }
+    
+    .register-item label,
+    .memory-item label {
+      font-family: ui-monospace, monospace;
+      font-size: 0.8rem;
+      min-width: 40px;
+      margin: 0;
+    }
+    
+    .register-item input,
+    .memory-item input {
+      flex: 1;
+      padding: var(--s-1);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 0.8rem;
+      font-family: ui-monospace, monospace;
+    }
+    
+    /* Execution Trace */
+    .execution-trace {
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: ui-monospace, monospace;
+      font-size: 0.8rem;
+    }
+    
+    .trace-entry {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: var(--s-2);
+      padding: var(--s-1);
+      border-bottom: 1px solid var(--line);
+    }
+    
+    .trace-entry:last-child {
+      border-bottom: none;
+    }
+    
+    .trace-step {
+      color: var(--muted);
+      font-weight: 600;
+    }
+    
+    .trace-result {
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+    
+    /* Preset Cards */
+    .preset-card {
+      background: var(--elev);
+      padding: var(--s-3);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+    
+    .preset-card h4 {
+      margin: 0 0 var(--s-2);
+      font-size: 1rem;
+    }
+    
+    .preset-card ol {
+      margin: var(--s-2) 0 0;
+      padding-left: var(--s-4);
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-5);
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: var(--s-4);
+    }
+    
+    .modal-content h3 {
+      margin: 0 0 var(--s-4);
+    }
+    
+    .export-section,
+    .import-section {
+      margin-bottom: var(--s-4);
+    }
+    
+    .export-data,
+    .import-data {
+      width: 100%;
+      height: 150px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.8rem;
+      padding: var(--s-2);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) / 2);
+      background: var(--bg);
+      color: var(--fg);
+      resize: vertical;
+    }
+    
+    /* Callouts */
+    .callout {
+      padding: var(--s-4);
+      border-radius: var(--radius);
+      margin: var(--s-4) 0;
+      border-left: 4px solid;
+    }
+    
+    .callout.info {
+      background: color-mix(in oklab, var(--accent) 8%, var(--surface));
+      border-color: var(--accent);
+    }
+    
+    .callout.example {
+      background: color-mix(in oklab, var(--accent-2) 8%, var(--surface));
+      border-color: var(--accent-2);
+    }
+    
+    /* Definition list */
+    dt {
+      margin-top: var(--s-3);
+      margin-bottom: var(--s-1);
+    }
+    
+    dd {
+      margin-left: var(--s-4);
+      margin-bottom: var(--s-2);
+    }
+  </style>
+</body>
+</html>
