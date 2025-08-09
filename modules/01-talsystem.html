@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Modul 01 – Talsystem, koder och tvåkomplement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lär dig om talsystem, binär/hex-konvertering, BCD/Gray-koder och tvåkomplement">
+  <link rel="stylesheet" href="../assets/style.css?v=20250808">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+  
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="../index.html">Hem</a>
+        <a href="./00-oversikt.html">Översikt</a>
+        <a href="./01-talsystem.html" aria-current="page">Modul 01</a>
+        <a href="./02-boolean-algebra.html">Modul 02</a>
+        <a href="./03-cpu-arkitektur.html">Modul 03</a>
+        <a href="./04-aritmetiska-nat.html">Modul 04</a>
+        <a href="./05-minnen.html">Modul 05</a>
+        <a href="./06-buss-och-io.html">Modul 06</a>
+        <a href="./07-isa-och-assembly.html">Modul 07</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="card">
+        <h1 class="mt-0">Modul 01 – Talsystem, koder och tvåkomplement</h1>
+        <p class="lead">Fördjupa dig i grunderna för hur datorer representerar och manipulerar numerisk information.</p>
+        
+        <div class="cta">
+          <a class="btn" href="../tools/base-converter.html">Basomvandlare</a>
+          <a class="btn secondary" href="../tools/codes-converter.html">Kodomvandlare</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Positionssystem och baser</h2>
+        
+        <h3>Grundläggande koncept</h3>
+        <p>Ett <strong>positionssystem</strong> representerar tal genom att varje position har ett specifikt värde baserat på basen upphöjt till positionens index. För bas <em>b</em> gäller:</p>
+        
+        <div class="mono small" style="background: var(--elev); padding: var(--s-3); border-radius: var(--radius); margin: var(--s-3) 0;">
+          N = aₙ × bⁿ + aₙ₋₁ × bⁿ⁻¹ + ... + a₁ × b¹ + a₀ × b⁰
+        </div>
+
+        <h3>Vanliga baser i datorteknik</h3>
+        <ul>
+          <li><strong>Binär (bas 2):</strong> Använder siffrorna 0, 1. Naturligt för digitala system.</li>
+          <li><strong>Oktal (bas 8):</strong> Använder siffrorna 0-7. Kompakt representation av binära tal.</li>
+          <li><strong>Decimal (bas 10):</strong> Använder siffrorna 0-9. Människors naturliga system.</li>
+          <li><strong>Hexadecimal (bas 16):</strong> Använder 0-9, A-F. Kompakt för stora binära tal.</li>
+        </ul>
+
+        <div class="callout info">
+          <strong>Exempel:</strong> Talet 42 i decimal:<br>
+          • Binär: 101010₂ (32 + 8 + 2)<br>
+          • Oktal: 52₈ (5×8 + 2)<br>
+          • Hex: 2A₁₆ (2×16 + 10)
+        </div>
+
+        <h3>Konverteringsmetoder</h3>
+        
+        <h4>Från decimal till annan bas</h4>
+        <p>Använd <strong>upprepad division</strong>:</p>
+        <ol>
+          <li>Dividera talet med målbasen</li>
+          <li>Notera resten</li>
+          <li>Upprepa med kvoten tills den blir 0</li>
+          <li>Läs resterna bakifrån</li>
+        </ol>
+
+        <h4>Från annan bas till decimal</h4>
+        <p>Använd <strong>positionsvärden</strong>:</p>
+        <p>Multiplicera varje siffra med basens potens för den positionen och summera.</p>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Koder för siffror</h2>
+
+        <h3>BCD (Binary Coded Decimal)</h3>
+        <p>BCD representerar varje decimal siffra med 4 bitar. Det finns flera varianter:</p>
+        
+        <ul>
+          <li><strong>Natural BCD (NBCD):</strong> Rak binär representation (0000-1001)</li>
+          <li><strong>Excess-3:</strong> NBCD + 3 (0011-1100)</li>
+          <li><strong>Aiken-kod:</strong> Viktat system (2-4-2-1)</li>
+        </ul>
+
+        <div class="grid cols-2">
+          <div>
+            <h4>NBCD-tabell</h4>
+            <table style="width: 100%; font-family: monospace; font-size: 0.9rem;">
+              <tr><th>Decimal</th><th>NBCD</th></tr>
+              <tr><td>0</td><td>0000</td></tr>
+              <tr><td>1</td><td>0001</td></tr>
+              <tr><td>2</td><td>0010</td></tr>
+              <tr><td>3</td><td>0011</td></tr>
+              <tr><td>4</td><td>0100</td></tr>
+              <tr><td>5</td><td>0101</td></tr>
+              <tr><td>6</td><td>0110</td></tr>
+              <tr><td>7</td><td>0111</td></tr>
+              <tr><td>8</td><td>1000</td></tr>
+              <tr><td>9</td><td>1001</td></tr>
+            </table>
+          </div>
+          <div>
+            <h4>Excess-3-tabell</h4>
+            <table style="width: 100%; font-family: monospace; font-size: 0.9rem;">
+              <tr><th>Decimal</th><th>Excess-3</th></tr>
+              <tr><td>0</td><td>0011</td></tr>
+              <tr><td>1</td><td>0100</td></tr>
+              <tr><td>2</td><td>0101</td></tr>
+              <tr><td>3</td><td>0110</td></tr>
+              <tr><td>4</td><td>0111</td></tr>
+              <tr><td>5</td><td>1000</td></tr>
+              <tr><td>6</td><td>1001</td></tr>
+              <tr><td>7</td><td>1010</td></tr>
+              <tr><td>8</td><td>1011</td></tr>
+              <tr><td>9</td><td>1100</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <h3>Gray-kod</h3>
+        <p>Gray-kod är designad så att endast en bit ändras mellan intilliggande värden. Detta minskar fel vid analog-till-digital-konvertering.</p>
+        
+        <div class="callout warning">
+          <strong>Viktigt:</strong> Gray-kod är inte ett positionssystem utan en sekventiell kod.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Tvåkomplement och signerade tal</h2>
+
+        <h3>Representation av negativa tal</h3>
+        <p>Tvåkomplement är den vanligaste metoden för att representera signerade heltal i datorer:</p>
+
+        <h4>Metod för tvåkomplement</h4>
+        <ol>
+          <li>Skriv det positiva talet i binär form</li>
+          <li>Invertera alla bitar (ettans komplement)</li>
+          <li>Lägg till 1</li>
+        </ol>
+
+        <div class="callout example">
+          <strong>Exempel:</strong> -5 i 8-bitars tvåkomplement<br>
+          1. +5 = 00000101₂<br>
+          2. Invertera: 11111010₂<br>
+          3. Lägg till 1: 11111011₂ = -5
+        </div>
+
+        <h3>Egenskaper hos tvåkomplement</h3>
+        <ul>
+          <li><strong>Entydigt:</strong> Endast en representation av noll (00000000)</li>
+          <li><strong>Symmetriskt nästan:</strong> Kan representera ett mer negativt tal än positivt</li>
+          <li><strong>Enkel aritmetik:</strong> Addition och subtraktion fungerar som vanligt</li>
+        </ul>
+
+        <h3>Områden för tvåkomplement</h3>
+        <p>För n bitar kan tvåkomplement representera värden från -2ⁿ⁻¹ till +2ⁿ⁻¹ - 1:</p>
+        <ul>
+          <li><strong>8 bitar:</strong> -128 till +127</li>
+          <li><strong>16 bitar:</strong> -32,768 till +32,767</li>
+          <li><strong>32 bitar:</strong> -2,147,483,648 till +2,147,483,647</li>
+        </ul>
+
+        <h3>Overflow och underflow</h3>
+        <p>Overflow inträffar när resultatet av en operation inte får plats i den tillgängliga bitbredden. I tvåkomplement kan detta detekteras genom att kontrollera carry-bitarna.</p>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Praktiska tillämpningar</h2>
+
+        <h3>Minnesstorlekar</h3>
+        <p>Förståelse av binära tal är grundläggande för att förstå minnesstorlekar:</p>
+        <ul>
+          <li><strong>Bit:</strong> Minsta informationsenheten (0 eller 1)</li>
+          <li><strong>Byte:</strong> 8 bitar (kan representera 0-255)</li>
+          <li><strong>Kilobyte (KB):</strong> 1024 bytes = 2¹⁰ bytes</li>
+          <li><strong>Megabyte (MB):</strong> 1024 KB = 2²⁰ bytes</li>
+        </ul>
+
+        <h3>Adressering</h3>
+        <p>Varje minnescell i en dator har en unik adress uttryckt i binär/hex:</p>
+        <ul>
+          <li><strong>32-bitars system:</strong> Kan adressera 4 GB minne (2³²)</li>
+          <li><strong>64-bitars system:</strong> Kan adressera 16 EB minne (2⁶⁴)</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Kunskapskontroll</h2>
+        <p>Testa dina kunskaper om talsystem, koder och tvåkomplement:</p>
+        
+        <div id="quiz-container"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="container center">
+      © <span id="year"></span> Datorteknik
+    </div>
+  </footer>
+
+  <script src="../assets/js/quiz.js"></script>
+  <script>
+    // Initialize quiz
+    document.addEventListener('DOMContentLoaded', function() {
+      quizEngine = new QuizEngine('#quiz-container', {
+        storageKey: 'datorteknik-quiz-module01',
+        showProgress: true,
+        allowRetry: true
+      });
+      
+      quizEngine.loadQuestions('../assets/quizzes/module01.json');
+      
+      // Set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+
+  <style>
+    .callout {
+      padding: var(--s-4);
+      border-radius: var(--radius);
+      margin: var(--s-4) 0;
+      border-left: 4px solid;
+    }
+    
+    .callout.info {
+      background: color-mix(in oklab, var(--accent) 8%, var(--surface));
+      border-color: var(--accent);
+    }
+    
+    .callout.warning {
+      background: color-mix(in oklab, #f59e0b 8%, var(--surface));
+      border-color: #f59e0b;
+    }
+    
+    .callout.example {
+      background: color-mix(in oklab, var(--accent-2) 8%, var(--surface));
+      border-color: var(--accent-2);
+    }
+    
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--accent);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1000;
+    }
+    
+    .skip-link:focus {
+      top: 6px;
+    }
+    
+    table {
+      border-collapse: collapse;
+      margin: var(--s-3) 0;
+    }
+    
+    th, td {
+      border: 1px solid var(--line);
+      padding: var(--s-2);
+      text-align: left;
+    }
+    
+    th {
+      background: var(--elev);
+      font-weight: 600;
+    }
+  </style>
+</body>
+</html>

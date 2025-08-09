@@ -1,0 +1,102 @@
+{
+  "title": "Modul 01 - Talsystem, koder och tvåkomplement",
+  "description": "Kunskapskontroll för talsystem, baskoder och tvåkomplementaritmetik",
+  "questions": [
+    {
+      "type": "mcq",
+      "text": "Vilket är det binära talet för decimala 13?",
+      "options": ["1011", "1101", "1001", "1111"],
+      "correctAnswer": 1,
+      "explanation": "13 i decimal = 8 + 4 + 1 = 2³ + 2² + 2⁰ = 1101₂"
+    },
+    {
+      "type": "mcq",
+      "text": "Vad blir 0xFF i decimal?",
+      "options": ["255", "256", "15", "16"],
+      "correctAnswer": 0,
+      "explanation": "0xFF = 15×16¹ + 15×16⁰ = 240 + 15 = 255"
+    },
+    {
+      "type": "multi",
+      "text": "Vilka av följande är giltiga representationer av talet 10 i decimal?",
+      "options": ["1010₂", "0xA", "12₈", "A₁₆"],
+      "correctAnswer": [0, 1, 3],
+      "explanation": "1010₂ = 8+2 = 10, 0xA = 10, 12₈ = 8+2 = 10, A₁₆ = 10. Alternativ 2 (12₈) är felaktigt eftersom 12₈ = 10."
+    },
+    {
+      "type": "numeric",
+      "text": "Beräkna 1011₂ + 110₂ i decimal:",
+      "correctAnswer": 17,
+      "tolerance": 0,
+      "explanation": "1011₂ = 8+2+1 = 11, 110₂ = 4+2 = 6. Summan är 11+6 = 17."
+    },
+    {
+      "type": "mcq",
+      "text": "Vad är tvåkomplementet av 5 i 8-bitars representation?",
+      "options": ["11111011", "11111010", "00000101", "10000101"],
+      "correctAnswer": 0,
+      "explanation": "5 = 00000101₂. Tvåkomplement: invertera alla bitar (11111010) och lägg till 1 = 11111011₂ = -5."
+    },
+    {
+      "type": "mcq",
+      "text": "Vilket är det största positiva talet som kan representeras med 8 bitar i tvåkomplement?",
+      "options": ["127", "128", "255", "256"],
+      "correctAnswer": 0,
+      "explanation": "I 8-bitars tvåkomplement är det största positiva talet 01111111₂ = 127. Området är -128 till +127."
+    },
+    {
+      "type": "multi",
+      "text": "Vilka av följande koder används för att representera siffror?",
+      "options": ["BCD (Binary Coded Decimal)", "ASCII", "Gray-kod", "NBCD"],
+      "correctAnswer": [0, 3],
+      "explanation": "BCD och NBCD (Natural BCD) används för att koda decimala siffror. ASCII kodar text, Gray-kod minimerar fel vid sekventiella värden."
+    },
+    {
+      "type": "numeric",
+      "text": "Vad blir resultatet av 11010₂ - 1001₂ i decimal?",
+      "correctAnswer": 17,
+      "tolerance": 0,
+      "explanation": "11010₂ = 16+8+2 = 26, 1001₂ = 8+1 = 9. Skillnaden är 26-9 = 17."
+    },
+    {
+      "type": "step",
+      "text": "Ordna stegen för konvertering från decimal till binär (för talet 23):",
+      "steps": [
+        "23 ÷ 2 = 11 rest 1",
+        "11 ÷ 2 = 5 rest 1", 
+        "5 ÷ 2 = 2 rest 1",
+        "2 ÷ 2 = 1 rest 0",
+        "1 ÷ 2 = 0 rest 1",
+        "Läs resterna bakifrån: 10111₂"
+      ],
+      "correctAnswer": [0, 1, 2, 3, 4, 5],
+      "explanation": "Konvertering sker genom upprepad division med 2. Resterna läses bakifrån för att få det binära talet."
+    },
+    {
+      "type": "mcq",
+      "text": "I BCD (Binary Coded Decimal), hur representeras siffran 9?",
+      "options": ["1001", "1010", "1011", "1111"],
+      "correctAnswer": 0,
+      "explanation": "I BCD använder varje decimal siffra 4 bitar. Siffran 9 = 1001₂ i BCD."
+    },
+    {
+      "type": "mcq",
+      "text": "Vad är fördelen med Gray-kod jämfört med binär kod?",
+      "options": [
+        "Använder färre bitar",
+        "Endast en bit ändras mellan intilliggande värden",
+        "Lättare att konvertera till decimal",
+        "Kan representera större tal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Gray-kodens fördel är att endast en bit ändras mellan intilliggande värden, vilket minskar risken för fel vid avläsning."
+    },
+    {
+      "type": "numeric",
+      "text": "Hur många olika värden kan representeras med 6 bitar?",
+      "correctAnswer": 64,
+      "tolerance": 0,
+      "explanation": "Med n bitar kan 2ⁿ olika värden representeras. Med 6 bitar: 2⁶ = 64 värden."
+    }
+  ]
+}

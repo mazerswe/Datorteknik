@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Modul 07 – ISA och Assembly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lär dig om instruktionsuppsättningar och assemblerspråk">
+  <link rel="stylesheet" href="../assets/style.css?v=20250808">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+  
+  <header class="site">
+    <div class="container navbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Datorteknik</span>
+      </div>
+      <nav class="nav" aria-label="Huvudnavigering">
+        <a href="../index.html">Hem</a>
+        <a href="./00-oversikt.html">Översikt</a>
+        <a href="./01-talsystem.html">Modul 01</a>
+        <a href="./02-boolean-algebra.html">Modul 02</a>
+        <a href="./03-cpu-arkitektur.html">Modul 03</a>
+        <a href="./04-aritmetiska-nat.html">Modul 04</a>
+        <a href="./05-minnen.html">Modul 05</a>
+        <a href="./06-buss-och-io.html">Modul 06</a>
+        <a href="./07-isa-och-assembly.html" aria-current="page">Modul 07</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="card">
+        <h1 class="mt-0">Modul 07 – ISA och Assembly</h1>
+        <p class="lead">Fördjupa dig i instruktionsuppsättningar, adresseringssätt och assemblerprogrammering.</p>
+        
+        <div class="cta">
+          <a class="btn" href="../tools/isa-sim.html">ISA-simulator</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Grundläggande koncept</h2>
+        <p>ISA definierar gränssnittet mellan hårdvara och mjukvara genom instruktioner, register och adresseringssätt.</p>
+        
+        <p><em>Mer omfattande innehåll kommer att läggas till i kommande commits...</em></p>
+      </section>
+
+      <section class="card">
+        <h2 class="mt-0">Kunskapskontroll</h2>
+        <p>Kunskapskontroll för detta modul kommer att implementeras i kommande commits.</p>
+        
+        <div id="quiz-container"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="container center">
+      © <span id="year"></span> Datorteknik
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--accent);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1000;
+    }
+    
+    .skip-link:focus {
+      top: 6px;
+    }
+  </style>
+</body>
+</html>
