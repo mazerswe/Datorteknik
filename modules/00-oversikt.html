@@ -2,9 +2,11 @@
 <html lang="sv">
 <head>
   <meta charset="utf-8" />
-  <title>Översikt – Lärandemål och innehåll</title>
+  <title>Datorteknik – Översikt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../assets/style.css?v=20250808">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../theme-compat.css">
 </head>
 <body>
   <header class="site">
@@ -12,6 +14,7 @@
       <div class="brand"><span class="dot" aria-hidden="true"></span><span>Datorteknik</span></div>
       <nav class="nav" aria-label="Huvudnavigering">
         <a href="../index.html">Hem</a>
+        <a href="./00-oversikt.html" aria-current="page">Översikt</a>
         <a href="./01-talsystem.html">Modul 01</a>
         <a href="./02-boolean-algebra.html">Modul 02</a>
         <a href="./03-cpu-arkitektur.html">Modul 03</a>
@@ -23,54 +26,18 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <div class="container">
-      <section class="card">
-        <h1 class="mt-0">Översikt – Lärandemål och innehåll</h1>
-        <p class="small">Kartan hjälper dig hitta rätt modul/verktyg för varje lärandemål.</p>
-      </section>
-
-      <section class="card">
-        <h2 class="mt-0">Kunskap och förståelse</h2>
-        <ul>
-          <li>Koder (BCD/NBCD, alfanumeriska, Excess-3, Gray) → <a href="./01-talsystem.html">Modul 01</a>, <a href="../tools/codes-converter.html">Kodomvandlare</a></li>
-          <li>2- och 10-komplement → <a href="./01-talsystem.html">Modul 01</a>, <a href="../tools/binary-adder.html">Adderare</a>, <a href="../tools/binary-mul-div.html">Mul/Div</a></li>
-          <li>Datorns uppbyggnad (styrenhet, dataväg, registerfil, ALU) → <a href="./03-cpu-arkitektur.html">Modul 03</a>, <a href="../tools/datapath-simulator.html">Datapath-sim</a></li>
-          <li>Automatisk styrenhet, styrsekvenser → <a href="./03-cpu-arkitektur.html">Modul 03</a>, <a href="../tools/datapath-simulator.html">Datapath-sim</a></li>
-          <li>Lagrade programmets princip → <a href="./03-cpu-arkitektur.html">Modul 03</a>, <a href="./07-isa-och-assembly.html">Modul 07</a></li>
-          <li>Instruktionsuppsättning och adresseringssätt → <a href="./07-isa-och-assembly.html">Modul 07</a>, <a href="../tools/isa-sim.html">ISA-sim</a></li>
-          <li>Undantagshantering → <a href="./07-isa-och-assembly.html">Modul 07</a></li>
-          <li>Minnesteknologier och minneshierarki → <a href="./05-minnen.html">Modul 05</a></li>
-          <li>Bussprotokoll, multiplex → <a href="./06-buss-och-io.html">Modul 06</a>, <a href="../tools/bus-protocols.html">Buss-sim</a></li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2 class="mt-0">Färdigheter och förmåga</h2>
-        <ul>
-          <li>Basomvandlingar, 2-komplement, mul/div → <a href="../tools/base-converter.html">Basomvandlare</a>, <a href="../tools/binary-adder.html">Adderare</a>, <a href="../tools/binary-mul-div.html">Mul/Div</a></li>
-          <li>Kombinatoriska nät (väljare/heladderare) → <a href="./02-boolean-algebra.html">Modul 02</a>, <a href="../tools/truth-table.html">Sanningstabell</a></li>
-          <li>Sekvensnät (minneselement/räknare) → <a href="./02-boolean-algebra.html">Modul 02</a></li>
-          <li>ALU och styrsignaler → <a href="./04-aritmetiska-nat.html">Modul 04</a>, <a href="../tools/alu-8.html">ALU</a>, <a href="../tools/datapath-simulator.html">Datapath</a></li>
-          <li>Dataväg: register ↔ ALU ↔ minne → <a href="./03-cpu-arkitektur.html">Modul 03</a>, <a href="../tools/datapath-simulator.html">Datapath</a></li>
-          <li>Assembler/subrutiner, assemblera/disassemblera → <a href="./07-isa-och-assembly.html">Modul 07</a>, <a href="../tools/isa-sim.html">ISA-sim</a></li>
-          <li>Avkodningslogik för primärminne → <a href="./05-minnen.html">Modul 05</a>, <a href="../tools/memory-decoder.html">Decoder</a></li>
-          <li>Minnesadresserad IO → <a href="./06-buss-och-io.html">Modul 06</a>, <a href="../tools/mmio-sim.html">MMIO</a></li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2 class="mt-0">Värderingsförmåga och förhållningssätt</h2>
-        <ul>
-          <li>HW/SW-samspelet (prestanda/energi/realtid/säkerhet) → Reflektionsfrågor i modulerna 03, 05, 06, 07.</li>
-          <li>Styrsekvenser utifrån instruktioners semantik → <a href="../tools/datapath-simulator.html">Datapath-sim</a>, <a href="../tools/isa-sim.html">ISA-sim</a></li>
-          <li>Konstruera sekvensnät, avkodning, MMIO → <a href="./02-boolean-algebra.html">M02</a>, <a href="./05-minnen.html">M05</a>, <a href="./06-buss-och-io.html">M06</a></li>
-        </ul>
-      </section>
+      <h1>Översikt</h1>
+      <p class="muted">Platshållarsida – här kommer lärandemål och kurskarta.</p>
+      <div class="grid cols-2">
+        <article class="card"><h3 class="mt-0">Modul 01</h3><p class="meta">Talsystem, koder, tvåkomplement</p></article>
+        <article class="card"><h3 class="mt-0">Modul 02</h3><p class="meta">Boolesk algebra, sanningstabeller</p></article>
+      </div>
     </div>
   </main>
 
   <footer class="site"><div class="container center">© <span id="y"></span> Datorteknik</div></footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="../script.js"></script>
 </body>
 </html>
