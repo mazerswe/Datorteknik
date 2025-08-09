@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" aria-labelledby="twos-comp-title" role="img">
+  <title id="twos-comp-title">Tvåkomplement talområde för 4-bitars tal</title>
+  
+  <!-- Background -->
+  <rect width="700" height="400" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Header -->
+  <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#212529">
+    Tvåkomplement talområde (4 bitar)
+  </text>
+  
+  <!-- Timeline arrow -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+     refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#495057" />
+    </marker>
+  </defs>
+  
+  <line x1="50" y1="200" x2="650" y2="200" stroke="#495057" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Center zero line -->
+  <line x1="350" y1="180" x2="350" y2="220" stroke="#6c757d" stroke-width="2"/>
+  <text x="350" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#212529">0</text>
+  <text x="350" y="255" text-anchor="middle" font-family="monospace" font-size="12" fill="#6c757d">0000</text>
+  
+  <!-- Positive numbers (right side) -->
+  <g font-family="Arial, sans-serif" font-size="12" fill="#198754">
+    <!-- +1 -->
+    <line x1="390" y1="185" x2="390" y2="215" stroke="#198754" stroke-width="1"/>
+    <text x="390" y="235" text-anchor="middle" font-weight="bold">+1</text>
+    <text x="390" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">0001</text>
+    
+    <!-- +2 -->
+    <line x1="430" y1="185" x2="430" y2="215" stroke="#198754" stroke-width="1"/>
+    <text x="430" y="235" text-anchor="middle" font-weight="bold">+2</text>
+    <text x="430" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">0010</text>
+    
+    <!-- +3 -->
+    <line x1="470" y1="185" x2="470" y2="215" stroke="#198754" stroke-width="1"/>
+    <text x="470" y="235" text-anchor="middle" font-weight="bold">+3</text>
+    <text x="470" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">0011</text>
+    
+    <!-- ... -->
+    <text x="510" y="235" text-anchor="middle" font-weight="bold">...</text>
+    
+    <!-- +7 (max) -->
+    <line x1="550" y1="185" x2="550" y2="215" stroke="#198754" stroke-width="2"/>
+    <text x="550" y="235" text-anchor="middle" font-weight="bold" fill="#dc3545">+7</text>
+    <text x="550" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">0111</text>
+    <text x="550" y="265" text-anchor="middle" font-size="10" fill="#dc3545">MAX</text>
+  </g>
+  
+  <!-- Negative numbers (left side) -->
+  <g font-family="Arial, sans-serif" font-size="12" fill="#dc3545">
+    <!-- -1 -->
+    <line x1="310" y1="185" x2="310" y2="215" stroke="#dc3545" stroke-width="1"/>
+    <text x="310" y="235" text-anchor="middle" font-weight="bold">-1</text>
+    <text x="310" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">1111</text>
+    
+    <!-- -2 -->
+    <line x1="270" y1="185" x2="270" y2="215" stroke="#dc3545" stroke-width="1"/>
+    <text x="270" y="235" text-anchor="middle" font-weight="bold">-2</text>
+    <text x="270" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">1110</text>
+    
+    <!-- -3 -->
+    <line x1="230" y1="185" x2="230" y2="215" stroke="#dc3545" stroke-width="1"/>
+    <text x="230" y="235" text-anchor="middle" font-weight="bold">-3</text>
+    <text x="230" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">1101</text>
+    
+    <!-- ... -->
+    <text x="190" y="235" text-anchor="middle" font-weight="bold">...</text>
+    
+    <!-- -8 (min) -->
+    <line x1="150" y1="185" x2="150" y2="215" stroke="#dc3545" stroke-width="2"/>
+    <text x="150" y="235" text-anchor="middle" font-weight="bold">-8</text>
+    <text x="150" y="250" text-anchor="middle" font-family="monospace" fill="#6c757d">1000</text>
+    <text x="150" y="265" text-anchor="middle" font-size="10" fill="#dc3545">MIN</text>
+  </g>
+  
+  <!-- Range indicators -->
+  <text x="100" y="300" font-family="Arial, sans-serif" font-size="14" fill="#495057">
+    Talområde: -2ⁿ⁻¹ till 2ⁿ⁻¹-1
+  </text>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="14" fill="#495057">
+    För 4 bitar: -2³ till 2³-1 = -8 till +7
+  </text>
+  
+  <!-- MSB explanation -->
+  <rect x="50" y="340" width="300" height="50" fill="#e9ecef" stroke="#adb5bd" stroke-width="1" rx="5"/>
+  <text x="60" y="360" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    MSB (most significant bit) = teckenbitt
+  </text>
+  <text x="60" y="375" font-family="Arial, sans-serif" font-size="12" fill="#495057">
+    0 = positivt tal, 1 = negativt tal
+  </text>
+  
+  <!-- Overflow warning -->
+  <rect x="400" y="340" width="250" height="50" fill="#fff3cd" stroke="#ffc107" stroke-width="1" rx="5"/>
+  <text x="410" y="360" font-family="Arial, sans-serif" font-size="12" fill="#856404">
+    ⚠️ Overflow: +7 + 1 → -8 (1000)
+  </text>
+  <text x="410" y="375" font-family="Arial, sans-serif" font-size="12" fill="#856404">
+    Underflow: -8 - 1 → +7 (0111)
+  </text>
+  
+  <!-- Examples box -->
+  <rect x="50" y="50" width="600" height="100" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#212529">
+    Exempel på tvåkomplementsberäkning:
+  </text>
+  
+  <text x="60" y="95" font-family="monospace" font-size="12" fill="#495057">
+    För att få -5: Starta med +5 = 0101
+  </text>
+  <text x="60" y="110" font-family="monospace" font-size="12" fill="#495057">
+    1. Invertera alla bitar: ~0101 = 1010
+  </text>
+  <text x="60" y="125" font-family="monospace" font-size="12" fill="#495057">
+    2. Addera 1: 1010 + 0001 = 1011 = -5
+  </text>
+  
+  <text x="400" y="95" font-family="monospace" font-size="12" fill="#495057">
+    Verifiering: 1011 som unsigned = 8+2+1 = 11
+  </text>
+  <text x="400" y="110" font-family="monospace" font-size="12" fill="#495057">
+    Som tvåkomplement: -(16-11) = -5 ✓
+  </text>
+</svg>
