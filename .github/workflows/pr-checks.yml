@@ -1,0 +1,44 @@
+name: PR checks (HTML validity, links, formatting)
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    name: Link check (internal/external)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run lychee link checker
+        uses: lycheeverse/lychee-action@v1.10.0
+        with:
+          args: --config .lychee.toml .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  html-validate:
+    name: HTML5 validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v6
+        with:
+          root: .
+          blacklist: "node_modules .git"
+          log_level: "INFO"
+
+  formatting:
+    name: Prettier formatting check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Prettier check
+        run: npx -y prettier@3.3.3 --check "**/*.{html,css,js,md,json,yml,yaml}"
