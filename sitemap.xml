@@ -3,127 +3,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://example.com/00-oversikt.html</loc>
-    <lastmod>2026-01-12T04:36:16.288Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.143Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/404.html</loc>
-    <lastmod>2026-01-12T04:36:16.288Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.144Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/</loc>
-    <lastmod>2026-01-12T04:36:16.289Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://example.com/modules/00-oversikt.html</loc>
-    <lastmod>2026-01-12T04:36:16.289Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/01-talsystem.html</loc>
-    <lastmod>2026-01-12T04:36:16.289Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/02-boolean-algebra.html</loc>
-    <lastmod>2026-01-12T04:36:16.289Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/03-cpu-arkitektur.html</loc>
-    <lastmod>2026-01-12T04:36:16.289Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/04-aritmetiska-nat.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.145Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/05-minne.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/modules/06-buss-och-io.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/alu-8.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/base-converter.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/binary-adder.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/binary-mul-div.html</loc>
-    <lastmod>2026-01-12T04:36:16.290Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/bus-protocols.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/codes-converter.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.146Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/datapath-simulator.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.147Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/isa-sim.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.147Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/memory-decoder.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.147Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/mmio-sim.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.147Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://example.com/tools/truth-table.html</loc>
-    <lastmod>2026-01-12T04:36:16.291Z</lastmod>
+    <lastmod>2026-01-19T04:38:04.147Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
